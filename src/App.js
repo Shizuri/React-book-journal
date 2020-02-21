@@ -1,12 +1,17 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
+import FindBook from './FindBook'
+import Journal from './Journal'
+import OldCodeToBeRemoved from './OldCodeToBeRemoved'
 
 function App() {
 	return (
-		<div className="App">
-			GL HF
+		<div className='App'>
+			<FindBook />
+			<Journal />
+			<OldCodeToBeRemoved />
 		</div>
-	);
+	)
 }
 
-export default App;
+export default App
