@@ -17,7 +17,7 @@ const FindBook = () => {
     const getBooks = term => {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=10`)
             .then(function (response) {
-                console.log('response is: ', response)
+                console.log('response: ', response)
                 if (response.data.totalItems === 0) {
                     setSearchResults([])
                     setNoBooksFound(true)
@@ -50,9 +50,12 @@ const FindBook = () => {
             }
             return (
                 searchResults.map((book, index) =>
-                    <p key={book.id}>{index + 1}: {book.volumeInfo.title} - {
+                <div key={book.id}>
+                    <span>{index + 1}: {book.volumeInfo.title} - {
                         book.volumeInfo.subtitle ? book.volumeInfo.subtitle : 'NO SUBTITLE'} <b>by</b> {
-                            book.volumeInfo.authors ? book.volumeInfo.authors.map(author => author) : 'NO'}</p>)
+                            book.volumeInfo.authors ? book.volumeInfo.authors.map(author => author) : 'NO'}</span>
+                            {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} /> : <b>NO IMAGE!</b>}
+                </div>)
             )
         }
     }
