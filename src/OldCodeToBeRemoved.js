@@ -17,7 +17,7 @@ function OldCodeToBeRemoved() {
 				console.log(error)
 			})
 			.then(function () {
-				// console.log('this will always execute')
+				// console.log('this will always executed')
 			})
 	}
 
