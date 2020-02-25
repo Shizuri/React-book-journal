@@ -1,25 +1,26 @@
 import React from 'react'
 import './App.css'
-import FindBook from './FindBook'
+import BookBrowser from './BookBrowser'
 import Journal from './Journal'
 import { NavLink, Route, Switch, Redirect } from 'react-router-dom'
 
 function App() {
 	return (
 		<div className='App'>
-			<nav style={{paddingBottom: '20px'}}>
-				<NavLink to='/' style={{paddingRight: '20px'}}>Find Book</NavLink>
-				<NavLink to='/journal'>Book Journal</NavLink>
+			<nav style={{ marginTop: '2px' }}>
+				<NavLink exact to='/book-browser' activeClassName='App-nav-active' style={{ marginRight: '20px' }}>Book Browser</NavLink>
+				<NavLink exact to='/journal' activeClassName='App-nav-active'>Book Journal</NavLink>
 			</nav>
+			<hr style={{ marginBottom: '20px' }} />
 
 			<Switch>
-				<Route exact path='/'>
-					<FindBook />
-					{/* <Redirect exact from="/" to="search" /> */}
+				<Route exact path='/book-browser'>
+					<BookBrowser />
 				</Route>
 				<Route exact path='/journal'>
 					<Journal />
 				</Route>
+				<Redirect exact from='/' to='/book-browser' />
 			</Switch>
 		</div>
 	)

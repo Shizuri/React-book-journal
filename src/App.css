@@ -1,3 +1,9 @@
 .App {
   text-align: center;
 }
+
+.App-nav-active {
+  border: 2px solid purple;
+  background-color: papayawhip;
+  padding: 0px 2px
+}
