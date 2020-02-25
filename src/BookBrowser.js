@@ -6,8 +6,10 @@ import Book from './Book'
 const BookBrowser = () => {
     const [searchTerm, setSearchTerm] = useState('')
     const [bookResults, setBookResults] = useState([])
-    const [totalBooksFound, setTotalNoBooksFound] = useState(1)
+    const [totalBooksFound, setTotalNoBooksFound] = useState()
     const [isSearching, setIsSearching] = useState(false)
+    const [loadedBooksIndex, setLoadedBooksIndex] = useState(0)
+    const [isLoadingMoreBooks, setIsLoadingMoreBooks] = useState(false)
     const inputRef = useRef(null)
 
     const handleSubmit = event => {
@@ -19,7 +21,8 @@ const BookBrowser = () => {
     }
 
     const getBooks = term => {
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=10`)
+        const maxResults = 10
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=${maxResults}`)
             .then(function (response) {
                 console.log('response: ', response)
                 if (response.data.totalItems === 0) {
@@ -30,10 +33,39 @@ const BookBrowser = () => {
                     setBookResults(response.data.items)
                     setTotalNoBooksFound(response.data.totalItems)
                     setIsSearching(false)
+                    if(response.data.totalItems < 10){
+                        setLoadedBooksIndex(response.data.totalItems)
+                    } else {
+                        setLoadedBooksIndex(maxResults)
+                    }
                 }
             })
             .catch(function (error) {
                 setIsSearching(false)
+                console.log('Error!: ', error)
+            })
+            .then(function () {
+                // console.log('this will always execute')
+            })
+    }
+
+    const loadMoreBooks = () => {
+        const maxResults = 10
+        setIsLoadingMoreBooks(true)
+
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=${maxResults}&startIndex=${loadedBooksIndex}`)
+            .then(function (response) {
+                console.log('response of loading more: ', response)
+                if (response.data.items === undefined) {
+                    setIsLoadingMoreBooks(false)
+                } else {
+                    setBookResults(prevBookResults => [...prevBookResults, ...response.data.items])
+                    setIsLoadingMoreBooks(false)
+                    setLoadedBooksIndex(prevIndex => prevIndex + response.data.items.length)
+                }
+            })
+            .catch(function (error) {
+                setIsLoadingMoreBooks(false)
                 console.log('Error!: ', error)
             })
             .then(function () {
@@ -74,6 +106,7 @@ const BookBrowser = () => {
                 <button>Search</button>
             </form>
             {bookOutput()}
+            {totalBooksFound > 0 ? <button onClick={loadMoreBooks}>Load More Books</button> : null}
         </div >
     )
 }
