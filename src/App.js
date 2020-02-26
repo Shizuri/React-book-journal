@@ -21,7 +21,7 @@ function App() {
 				<Route exact path='/journal'>
 					<Journal />
 				</Route>
-				<Route exact path='/book-browser/:bookId'>
+				<Route exact path={'/book-browser/:bookId'}>
 					<BookDetails />
 				</Route>
 				<Redirect exact from='/' to='/book-browser' />

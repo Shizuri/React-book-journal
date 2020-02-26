@@ -5,14 +5,15 @@ import loadingFountain from './images/loadingFountain.gif'
 import Book from './Book'
 
 const BookBrowser = () => {
-    const [searchTerm, setSearchTerm] = useState('')
-    const [bookResults, setBookResults] = useState([])
-    const [totalBooksFound, setTotalNoBooksFound] = useState()
-    const [isSearching, setIsSearching] = useState(false)
-    const [loadedBooksIndex, setLoadedBooksIndex] = useState(0)
-    const [isLoadingMoreBooks, setIsLoadingMoreBooks] = useState(false)
-    const inputRef = useRef(null)
+    const [searchTerm, setSearchTerm] = useState('') // The search term
+    const [bookResults, setBookResults] = useState([]) // Storage array for all of the books data
+    const [totalBooksFound, setTotalBooksFound] = useState() // Number of books found
+    const [isSearching, setIsSearching] = useState(false) // Is the app waiting for data from Google Books, needed for loading animations
+    const [loadedBooksIndex, setLoadedBooksIndex] = useState(0) // Current index of loaded books. Neaded for loading more books
+    const [isLoadingMoreBooks, setIsLoadingMoreBooks] = useState(false) // Is the app waiting to load more books from the Google Books API
+    const inputRef = useRef(null) // Reference so that the search bar is focused on load.
 
+    // Needed to prevent page reaload, preventing queries from 0 length strins and setting the state of searching for books to ture
     const handleSubmit = event => {
         event.preventDefault()
         if (searchTerm.length > 0) {
@@ -21,19 +22,23 @@ const BookBrowser = () => {
         }
     }
 
+    // Getting books from Google Books API
     const getBooks = term => {
         const maxResults = 10
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=${maxResults}`)
             .then(function (response) {
                 console.log('response: ', response)
-                if (response.data.totalItems === 0) {
+                // If there are no books, update the state to represent that and stop searching
+                if (response.data.totalItems === 0) { 
                     setBookResults([])
-                    setTotalNoBooksFound(0)
+                    setTotalBooksFound(0)
                     setIsSearching(false)
                 } else {
+                    // If books are found, load them to state and stop searching
                     setBookResults(response.data.items)
-                    setTotalNoBooksFound(response.data.totalItems)
+                    setTotalBooksFound(response.data.totalItems)
                     setIsSearching(false)
+                    // Set the index, needed for loading more books, to the appropriate number
                     if (response.data.totalItems < 10) {
                         setLoadedBooksIndex(response.data.totalItems)
                     } else {
@@ -47,6 +52,7 @@ const BookBrowser = () => {
             })
     }
 
+    // Get more books
     const loadMoreBooks = () => {
         const maxResults = 10
         setIsLoadingMoreBooks(true)
@@ -54,6 +60,7 @@ const BookBrowser = () => {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=${maxResults}&startIndex=${loadedBooksIndex}`)
             .then(function (response) {
                 console.log('response of loading more: ', response)
+                // If the API runs out of books it does not have 'response.data.items' in the object
                 if (response.data.items === undefined) {
                     setIsLoadingMoreBooks(false)
                 } else {
@@ -68,13 +75,15 @@ const BookBrowser = () => {
             })
     }
 
+    // Here to focus on the search bar only on the first load of the page
     useEffect(() => {
         inputRef.current.focus()
     }, [])
 
+    // Printing the books
     const booksOutput = () => {
         if (isSearching) {
-            return <img src={loadingFountain} alt='Searching...'/>
+            return <img src={loadingFountain} alt='Searching...' />
         } else {
             if (totalBooksFound === 0) {
                 return <p>No books found for the "{searchTerm}" query.</p>
@@ -85,9 +94,10 @@ const BookBrowser = () => {
         }
     }
 
+    // The 'Load More Books' button is replaced with a loading animation at loading times
     const bookButton = () => {
         if (isLoadingMoreBooks) {
-            return <img src={loadingFountain} alt='Loading...'/>
+            return <img src={loadingFountain} alt='Loading...' />
         } else {
             return totalBooksFound > 0 ? <button onClick={loadMoreBooks}>Load More Books</button> : null
         }
