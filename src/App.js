@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import BookBrowser from './BookBrowser'
+import BookDetails from './BookDetails'
 import Journal from './Journal'
 import { NavLink, Route, Switch, Redirect } from 'react-router-dom'
 
@@ -19,6 +20,9 @@ function App() {
 				</Route>
 				<Route exact path='/journal'>
 					<Journal />
+				</Route>
+				<Route exact path='/book-browser/:bookId'>
+					<BookDetails />
 				</Route>
 				<Redirect exact from='/' to='/book-browser' />
 			</Switch>

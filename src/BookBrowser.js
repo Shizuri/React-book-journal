@@ -45,9 +45,6 @@ const BookBrowser = () => {
                 setIsSearching(false)
                 console.log('Error!: ', error)
             })
-            .then(function () {
-                // console.log('this will always execute')
-            })
     }
 
     const loadMoreBooks = () => {
@@ -69,19 +66,13 @@ const BookBrowser = () => {
                 setIsLoadingMoreBooks(false)
                 console.log('Error!: ', error)
             })
-            .then(function () {
-                // console.log('this will always execute')
-            })
     }
 
     useEffect(() => {
         inputRef.current.focus()
-        // return () => {
-        //     console.log('unmounting BookBrowser...')
-        // }
     }, [])
 
-    const bookOutput = () => {
+    const booksOutput = () => {
         if (isSearching) {
             return <img src={loadingFountain} alt='Searching...'/>
         } else {
@@ -117,7 +108,7 @@ const BookBrowser = () => {
                 />
                 <button>Search</button>
             </form>
-            {bookOutput()}
+            {booksOutput()}
             {bookButton()}
         </div >
     )
