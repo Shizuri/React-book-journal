@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
+import loadingFountain from './images/loadingFountain.gif'
 
 import Book from './Book'
 
@@ -33,7 +34,7 @@ const BookBrowser = () => {
                     setBookResults(response.data.items)
                     setTotalNoBooksFound(response.data.totalItems)
                     setIsSearching(false)
-                    if(response.data.totalItems < 10){
+                    if (response.data.totalItems < 10) {
                         setLoadedBooksIndex(response.data.totalItems)
                     } else {
                         setLoadedBooksIndex(maxResults)
@@ -75,11 +76,14 @@ const BookBrowser = () => {
 
     useEffect(() => {
         inputRef.current.focus()
+        // return () => {
+        //     console.log('unmounting BookBrowser...')
+        // }
     }, [])
 
     const bookOutput = () => {
         if (isSearching) {
-            return <p>Searching...</p>
+            return <img src={loadingFountain} alt='Searching...'/>
         } else {
             if (totalBooksFound === 0) {
                 return <p>No books found for the "{searchTerm}" query.</p>
@@ -87,6 +91,14 @@ const BookBrowser = () => {
             return (
                 bookResults.map(book => <Book book={book} key={book.id} />)
             )
+        }
+    }
+
+    const bookButton = () => {
+        if (isLoadingMoreBooks) {
+            return <img src={loadingFountain} alt='Loading...'/>
+        } else {
+            return totalBooksFound > 0 ? <button onClick={loadMoreBooks}>Load More Books</button> : null
         }
     }
 
@@ -106,7 +118,7 @@ const BookBrowser = () => {
                 <button>Search</button>
             </form>
             {bookOutput()}
-            {totalBooksFound > 0 ? <button onClick={loadMoreBooks}>Load More Books</button> : null}
+            {bookButton()}
         </div >
     )
 }
