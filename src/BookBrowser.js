@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import axios from 'axios'
 import loadingFountain from './images/loadingFountain.gif'
 
 import Book from './Book'
+import { SearchContext } from './searchContext'
 
 const BookBrowser = () => {
-    const [searchTerm, setSearchTerm] = useState('') // The search term
-    const [bookResults, setBookResults] = useState([]) // Storage array for all of the books data
+    // This allows for the needed data to be availabe to all components even after they are unmounted by react-router
+    const { searchTerm, setSearchTerm, bookResults, setBookResults } = useContext(SearchContext)
+
     const [totalBooksFound, setTotalBooksFound] = useState() // Number of books found
     const [isSearching, setIsSearching] = useState(false) // Is the app waiting for data from Google Books, needed for loading animations
     const [loadedBooksIndex, setLoadedBooksIndex] = useState(0) // Current index of loaded books. Neaded for loading more books
@@ -29,7 +31,7 @@ const BookBrowser = () => {
             .then(function (response) {
                 console.log('response: ', response)
                 // If there are no books, update the state to represent that and stop searching
-                if (response.data.totalItems === 0) { 
+                if (response.data.totalItems === 0) {
                     setBookResults([])
                     setTotalBooksFound(0)
                     setIsSearching(false)
@@ -125,3 +127,5 @@ const BookBrowser = () => {
 }
 
 export default BookBrowser
+
+// This component holds all of the logic to find the queried books
