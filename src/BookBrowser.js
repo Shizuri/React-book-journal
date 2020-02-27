@@ -7,11 +7,20 @@ import { SearchContext } from './searchContext'
 
 const BookBrowser = () => {
     // This allows for the needed data to be availabe to all components even after they are unmounted by react-router
-    const { searchTerm, setSearchTerm, bookResults, setBookResults } = useContext(SearchContext)
+    const {
+        searchTerm,
+        setSearchTerm,
+        bookResults,
+        setBookResults,
+        totalBooksFound,
+        setTotalBooksFound,
+        loadedBooksIndex,
+        setLoadedBooksIndex
+    } = useContext(SearchContext)
 
-    const [totalBooksFound, setTotalBooksFound] = useState() // Number of books found
+    // const [totalBooksFound, setTotalBooksFound] = useState() // Number of books found
+    // const [loadedBooksIndex, setLoadedBooksIndex] = useState(0) // Current index of loaded books. Neaded for loading more books
     const [isSearching, setIsSearching] = useState(false) // Is the app waiting for data from Google Books, needed for loading animations
-    const [loadedBooksIndex, setLoadedBooksIndex] = useState(0) // Current index of loaded books. Neaded for loading more books
     const [isLoadingMoreBooks, setIsLoadingMoreBooks] = useState(false) // Is the app waiting to load more books from the Google Books API
     const inputRef = useRef(null) // Reference so that the search bar is focused on load.
 
