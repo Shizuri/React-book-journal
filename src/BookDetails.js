@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react'
 import BookCoverNotAvailable from './images/BookCoverNotAvailable.png'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { SearchContext } from './searchContext'
 
 const BookDetails = props => {
     const { bookId } = useParams()
+    const history = useHistory()
     const { bookResults } = useContext(SearchContext)
     const [book, setBook] = useState({})
 
@@ -63,6 +64,7 @@ const BookDetails = props => {
                 'Appropriate only for mature readers' : 'Appropriate for all readers' : <i>User rating not available</i>}</p>
             <img src={book.imageLinks ? book.imageLinks.thumbnail : BookCoverNotAvailable} alt={book.title} />
             <p>Language: {book.language ? book.language : <i>Language rating not available</i>}</p>
+            <button onClick={history.goBack}>Back to Book Browser</button>
         </div>
     )
 }
