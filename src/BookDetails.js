@@ -9,6 +9,18 @@ const BookDetails = props => {
     const [book, setBook] = useState({})
 
     useEffect(() => {
+        // Get a single book from the Google Books API
+        const getABook = () => {
+            fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
+                .then((response) => {
+                    return response.json()
+                })
+                .then((myJson) => {
+                    setBook(myJson.volumeInfo)
+                    console.log('Getting a book from API: ', myJson.volumeInfo)
+                })
+        }
+
         // If we are missing the data, in case of a user refres, fetch the data again, but just for this book.
         if (bookResults.length === 0) {
             getABook(bookId)
@@ -16,19 +28,7 @@ const BookDetails = props => {
             // If the data is still here, get it from Context API
             setBook(bookResults.filter(book => book.id === bookId)[0].volumeInfo)
         }
-    }, [])
-
-    // Get a single book from the Google Books API
-    const getABook = () => {
-        fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
-            .then((response) => {
-                return response.json()
-            })
-            .then((myJson) => {
-                setBook(myJson.volumeInfo)
-                console.log('myJson.volumeInfo: ', myJson.volumeInfo)
-            })
-    }
+    }, [bookId, bookResults])
 
     // Because of inconsistency issues with the Google Books API some requests require a bit of management 
     const industryIdentifiersPrintout = () => {
@@ -66,7 +66,6 @@ const BookDetails = props => {
         </div>
     )
 }
-
 export default BookDetails
 
 // Component to show all of the details about a book once it is clicked in the list of queried books
