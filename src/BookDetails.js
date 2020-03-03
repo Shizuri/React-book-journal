@@ -2,12 +2,30 @@ import React, { useState, useContext, useEffect } from 'react'
 import BookCoverNotAvailable from './images/BookCoverNotAvailable.png'
 import { useParams, useHistory } from 'react-router-dom'
 import { SearchContext } from './searchContext'
+import { JournalContext } from './journalContext'
 
 const BookDetails = props => {
-    const { bookId } = useParams()
-    const history = useHistory()
-    const { bookResults } = useContext(SearchContext)
-    const [book, setBook] = useState({})
+    const { bookId } = useParams() // Get the book id that is sent as the book parametar in the URL
+    const history = useHistory() // Browsing history provided by react-router
+
+    const { bookResults } = useContext(SearchContext) // If the page details are already in the bookResults, there is no need to fetch them from the API again
+    const { addBookToJournal } = useContext(JournalContext) // Function to add the book to the journal
+
+    const [book, setBook] = useState({}) // State for the book that we are currently looking at
+    
+    // The Google Books API just omits the object property if there is no data! This is how we handle this problem
+    const subtitle = book.subtitle ? book.subtitle : <i>Subtitle not available</i>
+    const authors = book.authors ? book.authors.map(auth => auth) : <i>Authors not available</i>
+    const publisher = book.publisher ? book.publisher : <i>Publisher not available</i>
+    const dateOfPublishing = book.publishedDate ? book.publishedDate : <i>Date of publishing not available</i>
+    const description = book.description ? book.description : <i>Description not available</i>
+    const pageCount = book.pageCount ? book.pageCount : <i>Page count not available</i>
+    const categories = book.categories ? book.categories.map(cat => cat) : <i>Categories not available</i>
+    const userRatings = book.averageRating ? book.averageRating : <i>User rating not available</i>
+    const maturityRating = book.maturityRating ? book.maturityRating === 'MATURE' ?
+    'Appropriate only for mature readers' : 'Appropriate for all readers' : <i>User rating not available</i>
+    const img = book.imageLinks ? book.imageLinks.thumbnail : BookCoverNotAvailable
+    const language = book.language ? book.language : <i>Language rating not available</i>
 
     useEffect(() => {
         // Get a single book from the Google Books API
@@ -50,20 +68,20 @@ const BookDetails = props => {
 
     return (
         <div>
+            <button onClick={() => addBookToJournal(bookId, book.title, img)}>Add to Journal</button>
             <p>Title: {book.title}</p>
-            <p>Subtitle: {book.subtitle ? book.subtitle : <i>Subtitle not available</i>}</p>
-            <p>Authors: {book.authors ? book.authors.map(auth => auth) : <i>Authors not available</i>}</p>
-            <p>Publisher: {book.publisher ? book.publisher : <i>Publisher not available</i>}</p>
-            <p>Date of publishing: {book.publishedDate ? book.publishedDate : <i>Date of publishing not available</i>}</p>
-            <p>Description: {book.description ? book.description : <i>Description not available</i>}</p>
+            <p>Subtitle: {subtitle}</p>
+            <p>Authors: {authors}</p>
+            <p>Publisher: {publisher}</p>
+            <p>Date of publishing: {dateOfPublishing}</p>
+            <p>Description: {description}</p>
             {industryIdentifiersPrintout()}
-            <p>Page count: {book.pageCount ? book.pageCount : <i>Page count not available</i>}</p>
-            <p>Categories: {book.categories ? book.categories.map(cat => cat) : <i>Categories not available</i>}</p>
-            <p>User rating: {book.averageRating ? book.averageRating : <i>User rating not available</i>}</p>
-            <p>Мaturity rating: {book.maturityRating ? book.maturityRating === 'MATURE' ?
-                'Appropriate only for mature readers' : 'Appropriate for all readers' : <i>User rating not available</i>}</p>
-            <img src={book.imageLinks ? book.imageLinks.thumbnail : BookCoverNotAvailable} alt={book.title} />
-            <p>Language: {book.language ? book.language : <i>Language rating not available</i>}</p>
+            <p>Page count: {pageCount}</p>
+            <p>Categories: {categories}</p>
+            <p>User rating: {userRatings}</p>
+            <p>Мaturity rating: {maturityRating}</p>
+            <img src={img} alt={book.title} />
+            <p>Language: {language}</p>
             <button onClick={history.goBack}>Back to Book Browser</button>
         </div>
     )

@@ -14,6 +14,7 @@ const JournalContextProvider = props => {
             setMyBooks(prevMyBooks => {
                 const updatedBooks = [...prevMyBooks, book]
                 localStorage.setItem("books", JSON.stringify(updatedBooks))
+                console.log('book added confirmation, change this to some CSS notification')
                 return updatedBooks
             })
         }
