@@ -5,7 +5,7 @@ import loadingFountain from './images/loadingFountain.gif'
 import Book from './Book'
 import { SearchContext } from './searchContext'
 
-const BookBrowser = () => {
+const BookBrowser = props => {
     // This allows for the needed data to be availabe to all components even after they are unmounted by react-router
     const {
         searchTerm,
