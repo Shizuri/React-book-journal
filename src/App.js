@@ -3,7 +3,7 @@ import './App.css'
 import BookBrowser from './BookBrowser'
 import BookDetails from './BookDetails'
 import Journal from './Journal'
-import JournalEntry from './JournalEntry'
+import JournaEntryDetails from './JournaEntryDetails'
 import EditJournalEntry from './EditJournalEntry'
 import { NavLink, Route, Switch, Redirect } from 'react-router-dom'
 
@@ -27,7 +27,7 @@ const App = props => {
 					<BookDetails />
 				</Route>
 				<Route exact path={'/journal/:bookId'}>
-					<JournalEntry />
+					<JournaEntryDetails />
 				</Route>
 				<Route exact path={'/journal/edit/:bookId'}>
 					<EditJournalEntry />

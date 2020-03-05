@@ -13,7 +13,7 @@ const Book = props => {
     const img = imageLinks ? imageLinks.thumbnail : BookCoverNotAvailable // The Google Books API just ommits the imageLinks property if there are no images
 
     return (
-        <div style={{ border: '1px solid black', width: '80%', margin: '0px auto 10px' }}>
+        <div style={{ border: '1px solid black', width: '80%', margin: '0px auto 10px', backgroundColor: '#F8ECC2' }}>
             <Link to={`${url}/${id}`}>{title} {subtitle ? ` - ${subtitle}` : ''}</Link> <b>
                 by</b> {authors ? authors.map(author => author) : <i>authors missing</i>}
             <Link to={`${url}/${id}`}><img src={img} alt={title} /></Link>

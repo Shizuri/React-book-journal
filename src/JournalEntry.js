@@ -1,29 +1,21 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const JournalEntry = props => {
-    // Get the book information passed from Journal as a Link state prop from react-router
-    const { state: bookState } = useLocation()
-    const { bookId, bookTitle, bookThumbnail } = bookState.book
-    // console.log(bookId, bookTitle, bookThumbnail)
-
     return (
-        <div>
-            <p>My Journal entry about <b>{bookTitle}</b></p>
-            <img src={bookThumbnail} alt={bookTitle} />
-            <p>Started reading on</p>
-            <p>Finished reading on</p>
-            <p>My rating</p>
-            <p>My opinion</p>
-            <p>Additional notes</p>
+        <div style={{ border: '1px solid teal', width: '80%', margin: '0px auto 10px', backgroundColor: 'pink' }}>
             <Link to={{
                 // Send the pathname and the book information to the clicked link
-                pathname: `edit/${bookId}`,
+                pathname: `journal/${props.book.bookId}`,
                 state: {
-                    book: bookState
+                    book: props.book
                 }
-            }}> Add / Edit Journal Entry</Link>
-            <button>Remove Book and Entry from Journal</button>
+            }}>
+                <div>
+                    <span>{props.book.bookTitle}</span>
+                    <img src={props.book.bookThumbnail} alt={props.book.bookTitle} />
+                </div>
+            </Link>
         </div>
     )
 }
