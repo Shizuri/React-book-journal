@@ -20,9 +20,10 @@ const JournaEntryDetails = props => {
     const [rating, setRating] = useState('')
     const [notes, setNotes] = useState('')
 
-    const removeBook = () => {
+    const handleRemoveBook = () => {
         if (window.confirm(`Are you sure that you want to remove ${bookTitle} from your Journal?`)) {
             console.log('removing: ', bookTitle)
+            console.log('TO DO: add removeBook to journalContext. Make sure that it redirects to Journal and that the data is up to date')
         }
     }
 
@@ -56,7 +57,7 @@ const JournaEntryDetails = props => {
                             book: bookState.book
                         }
                     }}> Add / Edit Journal Entry</Link>
-                    <button onClick={removeBook}>Remove Book and Entry from Journal</button>
+                    <button onClick={handleRemoveBook}>Remove Book and Entry from Journal</button>
                 </>
                 : <h2>This page can not be accessed directly.</h2>
             }
