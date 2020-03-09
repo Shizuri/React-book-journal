@@ -6,7 +6,15 @@ const EditJournalEntry = props => {
     const history = useHistory()
     // Get the book information passed from JournalEntry as a Link state prop from react-router
     const { state: bookState } = useLocation()
-    const { bookId, bookTitle, bookThumbnail } = bookState.book
+    // If this page is accessed directly, without the needed data passed from the Link leading here, the App will crash. This prevents that.
+    let properlyLoaded = true
+    let bookId, bookTitle, bookThumbnail
+    try {
+        ({ bookId, bookTitle, bookThumbnail } = bookState.book)
+    } catch (error) {
+        properlyLoaded = false
+        console.log(error)
+    }
 
     const [startDate, setStartDate] = useState('')
     const [finishDate, setFinishDate] = useState('')
@@ -25,63 +33,67 @@ const EditJournalEntry = props => {
 
     return (
         <div>
-            <p>Review value: {review}</p>
-            <form onSubmit={handleSubmit}>
-                <label>
-                Started reading on:
+            {properlyLoaded ?
+                <>
+                    <p>Review value: {review}</p>
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            Started reading on:
                     <input
-                        type='date'
-                        name='startDate'
-                        value={startDate}
-                        onChange={event => setStartDate(event.target.value)}
-                    />
-                </label>
-                <br />
-                <label>
-                Finished reading on:
+                                type='date'
+                                name='startDate'
+                                value={startDate}
+                                onChange={event => setStartDate(event.target.value)}
+                            />
+                        </label>
+                        <br />
+                        <label>
+                            Finished reading on:
                     <input
-                        type='date'
-                        name='finishDate'
-                        value={finishDate}
-                        onChange={event => setFinishDate(event.target.value)}
-                    />
-                </label>
-                <br />
-                <label>
-                    My rating:
+                                type='date'
+                                name='finishDate'
+                                value={finishDate}
+                                onChange={event => setFinishDate(event.target.value)}
+                            />
+                        </label>
+                        <br />
+                        <label>
+                            My rating:
                     <input
-                        type='number'
-                        name='rating'
-                        value={rating}
-                        onChange={event => setRating(event.target.value)}
-                        min='1'
-                        max='5'
-                    />
-                </label>
-                <br />
-                <label>
-                    My review:
+                                type='number'
+                                name='rating'
+                                value={rating}
+                                onChange={event => setRating(event.target.value)}
+                                min='1'
+                                max='5'
+                            />
+                        </label>
+                        <br />
+                        <label>
+                            My review:
                     <input
-                        type='text'
-                        name='review'
-                        value={review}
-                        onChange={event => setReview(event.target.value)}
-                    />
-                </label>
-                <br />
-                <label>
-                Additional notes:
+                                type='text'
+                                name='review'
+                                value={review}
+                                onChange={event => setReview(event.target.value)}
+                            />
+                        </label>
+                        <br />
+                        <label>
+                            Additional notes:
                     <input
-                        type='text'
-                        name='notes'
-                        value={notes}
-                        onChange={event => setNotes(event.target.value)}
-                    />
-                </label>
-                <br />
-                <input type='submit' value='Submit changes' />
-            </form>
-            <button onClick={() => console.log('Under construction')}>Cancel changes</button>
+                                type='text'
+                                name='notes'
+                                value={notes}
+                                onChange={event => setNotes(event.target.value)}
+                            />
+                        </label>
+                        <br />
+                        <input type='submit' value='Submit changes' />
+                    </form>
+                    <button onClick={() => console.log('Under construction')}>Cancel changes</button>
+                </>
+                : <h2>This page can not be accessed directly.</h2>}
         </div>
     )
 }
