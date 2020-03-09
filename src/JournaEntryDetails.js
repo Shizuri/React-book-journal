@@ -19,6 +19,12 @@ const JournaEntryDetails = props => {
     const [rating, setRating] = useState('')
     const [notes, setNotes] = useState('')
 
+    const removeBook = () => {
+        if (window.confirm(`Are you sure that you want to remove ${bookTitle} from your Journal?`)) {
+            console.log('removing: ', bookTitle)
+        }
+    }
+
     useEffect(() => {
         // Read data from localStorage and set it to state for display
         const journalEntry = JSON.parse(localStorage.getItem(bookId))
@@ -49,7 +55,7 @@ const JournaEntryDetails = props => {
                             book: bookState.book
                         }
                     }}> Add / Edit Journal Entry</Link>
-                    <button>Remove Book and Entry from Journal</button>
+                    <button onClick={removeBook}>Remove Book and Entry from Journal</button>
                 </>
                 : <h2>This page can not be accessed directly.</h2>
             }

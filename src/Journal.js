@@ -1,3 +1,4 @@
+// This component provides 
 import React, { useContext } from 'react'
 import { JournalContext } from './journalContext'
 import JournalEntry from './JournalEntry'

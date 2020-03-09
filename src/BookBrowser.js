@@ -1,3 +1,4 @@
+// This component provides the functionality to search and display books from the Google Books Api.
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import axios from 'axios'
 import loadingFountain from './images/loadingFountain.gif'

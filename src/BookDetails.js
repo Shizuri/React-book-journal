@@ -1,3 +1,6 @@
+// This component displays details about the book.
+// If the data is already fetched during the search it will be used right away.
+// If is not stored in state it will be feched again from the Google Books API.
 import React, { useState, useContext, useEffect } from 'react'
 import BookCoverNotAvailable from './images/BookCoverNotAvailable.png'
 import { useParams, useHistory } from 'react-router-dom'
@@ -9,7 +12,8 @@ const BookDetails = props => {
     const history = useHistory() // Browsing history provided by react-router
 
     const { bookResults } = useContext(SearchContext) // If the page details are already in the bookResults, there is no need to fetch them from the API again
-    const { addBookToJournal } = useContext(JournalContext) // Function to add the book to the journal
+    const { myBooks, addBookToJournal } = useContext(JournalContext) // Function to add the book to the journal
+    const bookIsInJournal = myBooks.some(book => book.bookId === bookId) // Check if the book is already in the Journal
 
     const [book, setBook] = useState({}) // State for the book that we are currently looking at
     
@@ -68,7 +72,9 @@ const BookDetails = props => {
 
     return (
         <div>
-            <button onClick={() => addBookToJournal(bookId, book.title, img)}>Add to Journal</button>
+            {bookIsInJournal ?
+            <span><b>This book is already in your Journal</b></span>
+                : <button onClick={() => addBookToJournal(bookId, book.title, img)}>Add to Journal</button>}
             <p>Title: {book.title}</p>
             <p>Subtitle: {subtitle}</p>
             <p>Authors: {authors}</p>
