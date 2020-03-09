@@ -1,3 +1,4 @@
+// This is a display component used in the Journal compomnent to display the books in the Journal.
 import React from 'react'
 import { Link } from 'react-router-dom'
 

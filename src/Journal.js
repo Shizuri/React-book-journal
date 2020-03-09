@@ -1,4 +1,4 @@
-// This component provides 
+// This component lists prints the books in the users journal.
 import React, { useContext } from 'react'
 import { JournalContext } from './journalContext'
 import JournalEntry from './JournalEntry'

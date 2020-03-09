@@ -11,6 +11,7 @@ const JournalContextProvider = props => {
 
         // Check if the book is already in the Journal, if not add it to localStorage and update the state
         if(myBooks.some(b => b.bookId === bookId)){
+            // Redundancy to check if book is already in the Journal
             alert('This book is already in your Journal')
         } else {
             setMyBooks(prevMyBooks => {

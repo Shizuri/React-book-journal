@@ -1,3 +1,4 @@
+// This component holds the form to enter/edit information about the journal entry.
 import React, { useState, useEffect } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
