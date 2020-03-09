@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 const EditJournalEntry = props => {
@@ -13,9 +13,8 @@ const EditJournalEntry = props => {
         ({ bookId, bookTitle, bookThumbnail } = bookState.book)
     } catch (error) {
         properlyLoaded = false
-        console.log(error)
     }
-
+    // State for the form
     const [startDate, setStartDate] = useState('')
     const [finishDate, setFinishDate] = useState('')
     const [review, setReview] = useState('')
@@ -24,18 +23,30 @@ const EditJournalEntry = props => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        console.log('startDate: ', startDate)
-        console.log('finishDate: ', finishDate)
-        console.log('rating: ', rating)
-        console.log('review: ', review)
-        console.log('notes: ', notes)
+        // Save the data to localStorage
+        const journalEntry = { startDate, finishDate, rating, review, notes }
+        localStorage.setItem(bookId, JSON.stringify(journalEntry))
     }
+
+    useEffect(() => {
+        // Read data from localStorage and set it to state
+        const journalEntry = JSON.parse(localStorage.getItem(bookId))
+        if (journalEntry !== null) {
+            setStartDate(journalEntry.startDate)
+            setFinishDate(journalEntry.finishDate)
+            setReview(journalEntry.review)
+            setRating(journalEntry.rating)
+            setNotes(journalEntry.notes)
+        }
+    }, [bookId])
 
     return (
         <div>
             {properlyLoaded ?
                 <>
-                    <p>Review value: {review}</p>
+                    <span>My journal entry for the book: {bookTitle}</span>
+                    <img src={bookThumbnail} alt={bookTitle} />
+                    <hr />
                     <form onSubmit={handleSubmit}>
                         <label>
                             Started reading on:
@@ -91,7 +102,7 @@ const EditJournalEntry = props => {
                         <br />
                         <input type='submit' value='Submit changes' />
                     </form>
-                    <button onClick={() => console.log('Under construction')}>Cancel changes</button>
+                    <button onClick={history.goBack}>Cancel changes</button>
                 </>
                 : <h2>This page can not be accessed directly.</h2>}
         </div>

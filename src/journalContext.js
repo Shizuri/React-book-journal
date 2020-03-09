@@ -13,7 +13,7 @@ const JournalContextProvider = props => {
         } else {
             setMyBooks(prevMyBooks => {
                 const updatedBooks = [...prevMyBooks, book]
-                localStorage.setItem("books", JSON.stringify(updatedBooks))
+                localStorage.setItem('books', JSON.stringify(updatedBooks))
                 console.log('book added confirmation, change this to some CSS notification')
                 return updatedBooks
             })
@@ -22,7 +22,7 @@ const JournalContextProvider = props => {
 
     useEffect(() => {
         // Load the books from localStorage to state at the start of the application
-        setMyBooks(JSON.parse(localStorage.getItem("books") || "[]"))
+        setMyBooks(JSON.parse(localStorage.getItem('books') || '[]'))
     }, [])
 
     return (
