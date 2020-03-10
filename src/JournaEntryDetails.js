@@ -1,29 +1,33 @@
 // This component displays the users journal entry for the book that he is reading.
 import React, { useState, useEffect, useContext } from 'react'
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import { JournalContext } from './journalContext'
 
 const JournaEntryDetails = props => {
-    // Get the book information passed from JournalEntry as a Link state prop from react-router
-    const { state: bookState } = useLocation()
-    // If this page is accessed directly, without the needed data passed from the Link leading here, the App will crash. This prevents that.
+    // If the page is loaded directly by its url, make sure that it's a valid journal entry
     let properlyLoaded = true
-    let bookId, bookTitle, bookThumbnail
+    // Get the book id that is sent as the book parametar in the URL
+    const { bookId } = useParams()
+    let bookTitle, bookThumbnail
+    const myBooks = JSON.parse(localStorage.getItem('books') || '[]')
     try {
-        ({ bookId, bookTitle, bookThumbnail } = bookState.book)
+        ({ bookTitle, bookThumbnail } = myBooks.filter(book => book.bookId === bookId)[0])
     } catch (error) {
         properlyLoaded = false
     }
+    
+    // Needed to redirect back to /journal after the book has been removed
+    const history = useHistory()
+
+    // Get the removeBookFromJournal function needed from journalContext
+    const { removeBookFromJournal } = useContext(JournalContext)
+
     // State for display data
     const [startDate, setStartDate] = useState('')
     const [finishDate, setFinishDate] = useState('')
     const [review, setReview] = useState('')
     const [rating, setRating] = useState('')
     const [notes, setNotes] = useState('')
-    // Get the removeBookFromJournal function from journalContext
-    const { removeBookFromJournal } = useContext(JournalContext)
-    // Neaded to redirect back to /journal after the book has been removed
-    const history = useHistory()
 
     // Provide a confirmation and page redirection after the book is removed from the Journal
     const handleRemoveBook = () => {
@@ -56,16 +60,10 @@ const JournaEntryDetails = props => {
                     <p>My rating: {rating}</p>
                     <p>My review: {review}</p>
                     <p>Additional notes: {notes}</p>
-                    <Link to={{
-                        // Send the pathname and the book information to the clicked link
-                        pathname: `edit/${bookId}`,
-                        state: {
-                            book: bookState.book
-                        }
-                    }}> Add / Edit Journal Entry</Link>
+                    <Link to={`edit/${bookId}`}> Add / Edit Journal Entry</Link>
                     <button onClick={handleRemoveBook}>Remove Book and Entry from Journal</button>
                 </>
-                : <h2>This page can not be accessed directly.</h2>
+                : <h2>This journal entry does not exist.</h2>
             }
         </div>
     )

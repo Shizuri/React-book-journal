@@ -1,25 +1,32 @@
 // This component holds the form to enter/edit information about the journal entry.
-import React, { useState, useEffect } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
+import { JournalContext } from './journalContext'
 
 const EditJournalEntry = props => {
-    // Browsing history provided by react-router
-    const history = useHistory()
-    // Get the book information passed from JournalEntry as a Link state prop from react-router
-    const { state: bookState } = useLocation()
-    // If this page is accessed directly, without the needed data passed from the Link leading here, the App will crash. This prevents that.
+    // If the page is loaded directly by its url, make sure that it's a valid journal entry
     let properlyLoaded = true
-    let bookId, bookTitle, bookThumbnail
+    // Get the book id that is sent as the book parametar in the URL
+    const { bookId } = useParams()
+    let bookTitle, bookThumbnail
+    const myBooks = JSON.parse(localStorage.getItem('books') || '[]')
     try {
-        ({ bookId, bookTitle, bookThumbnail } = bookState.book)
+        ({ bookTitle, bookThumbnail } = myBooks.filter(book => book.bookId === bookId)[0])
     } catch (error) {
         properlyLoaded = false
     }
+
+    // Browsing history provided by react-router, needed to redirect after submit or cancel
+    const history = useHistory()
+
+    // Get the removeBookFromJournal function needed from journalContext
+    const { removeBookFromJournal } = useContext(JournalContext)
+
     // State for the form
     const [startDate, setStartDate] = useState('')
     const [finishDate, setFinishDate] = useState('')
     const [review, setReview] = useState('')
-    const [rating, setRating] = useState(-1)
+    const [rating, setRating] = useState(3)
     const [notes, setNotes] = useState('')
 
     const handleSubmit = event => {
@@ -27,6 +34,15 @@ const EditJournalEntry = props => {
         // Save the data to localStorage
         const journalEntry = { startDate, finishDate, rating, review, notes }
         localStorage.setItem(bookId, JSON.stringify(journalEntry))
+        history.push(`/journal/${bookId}`)
+    }
+
+    // Provide a confirmation and page redirection after the book is removed from the Journal
+    const handleRemoveBook = () => {
+        if (window.confirm(`Are you sure that you want to remove ${bookTitle} from your Journal?`)) {
+            removeBookFromJournal(bookId)
+            history.push('/journal')
+        }
     }
 
     useEffect(() => {
@@ -103,9 +119,11 @@ const EditJournalEntry = props => {
                         <br />
                         <input type='submit' value='Submit changes' />
                     </form>
-                    <button onClick={history.goBack}>Cancel changes</button>
+                    <button onClick={() => history.push(`/journal/${bookId}`)}>Cancel changes</button>
+                    <br />
+                    <button onClick={handleRemoveBook}>Remove Book and Entry from Journal</button>
                 </>
-                : <h2>This page can not be accessed directly.</h2>}
+                : <h2>This journal entry does not exist.</h2>}
         </div>
     )
 }
