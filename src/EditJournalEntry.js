@@ -55,7 +55,9 @@ const EditJournalEntry = props => {
             setRating(journalEntry.rating)
             setNotes(journalEntry.notes)
         }
-    }, [bookId])
+
+        document.title = `Editing: ${bookTitle}`
+    }, [bookId, bookTitle])
 
     return (
         <div>

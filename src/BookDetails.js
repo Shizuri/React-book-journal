@@ -16,7 +16,7 @@ const BookDetails = props => {
     const bookIsInJournal = myBooks.some(book => book.bookId === bookId) // Check if the book is already in the Journal
 
     const [book, setBook] = useState({}) // State for the book that we are currently looking at
-    
+
     // The Google Books API just omits the object property if there is no data! This is how we handle this problem
     const subtitle = book.subtitle ? book.subtitle : <i>Subtitle not available</i>
     const authors = book.authors ? book.authors.map(auth => auth) : <i>Authors not available</i>
@@ -27,7 +27,7 @@ const BookDetails = props => {
     const categories = book.categories ? book.categories.map(cat => cat) : <i>Categories not available</i>
     const userRatings = book.averageRating ? book.averageRating : <i>User rating not available</i>
     const maturityRating = book.maturityRating ? book.maturityRating === 'MATURE' ?
-    'Appropriate only for mature readers' : 'Appropriate for all readers' : <i>User rating not available</i>
+        'Appropriate only for mature readers' : 'Appropriate for all readers' : <i>User rating not available</i>
     const img = book.imageLinks ? book.imageLinks.thumbnail : BookCoverNotAvailable
     const language = book.language ? book.language : <i>Language rating not available</i>
 
@@ -40,7 +40,7 @@ const BookDetails = props => {
                 })
                 .then((myJson) => {
                     setBook(myJson.volumeInfo)
-                    console.log('Getting a book from API: ', myJson.volumeInfo)
+                    document.title = myJson.volumeInfo.title
                 })
         }
 
@@ -49,8 +49,12 @@ const BookDetails = props => {
             getABook(bookId)
         } else {
             // If the data is still here, get it from Context API
-            setBook(bookResults.filter(book => book.id === bookId)[0].volumeInfo)
+            const foundBook = bookResults.filter(book => book.id === bookId)[0].volumeInfo
+            setBook(foundBook)
+            document.title = foundBook.title
         }
+
+        // document.title = book.title
     }, [bookId, bookResults])
 
     // Because of inconsistency issues with the Google Books API some requests require a bit of management 
@@ -73,7 +77,7 @@ const BookDetails = props => {
     return (
         <div>
             {bookIsInJournal ?
-            <span><b>This book is already in your Journal</b></span>
+                <span><b>This book is already in your Journal</b></span>
                 : <button onClick={() => addBookToJournal(bookId, book.title, img)}>Add to Journal</button>}
             <p>Title: {book.title}</p>
             <p>Subtitle: {subtitle}</p>

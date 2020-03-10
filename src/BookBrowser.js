@@ -37,7 +37,6 @@ const BookBrowser = props => {
         const maxResults = 10
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=${maxResults}`)
             .then(function (response) {
-                console.log('response: ', response)
                 // If there are no books, update the state to represent that and stop searching
                 if (response.data.totalItems === 0) {
                     setBookResults([])
@@ -69,7 +68,6 @@ const BookBrowser = props => {
 
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=${maxResults}&startIndex=${loadedBooksIndex}`)
             .then(function (response) {
-                console.log('response of loading more: ', response)
                 // If the API runs out of books it does not have 'response.data.items' in the object
                 if (response.data.items === undefined) {
                     setIsLoadingMoreBooks(false)
@@ -81,13 +79,13 @@ const BookBrowser = props => {
             })
             .catch(function (error) {
                 setIsLoadingMoreBooks(false)
-                console.log('Error!: ', error)
             })
     }
 
     // Here to focus on the search bar only on the first load of the page
     useEffect(() => {
         inputRef.current.focus()
+        document.title = 'Book Browser'
     }, [])
 
     // Printing the books

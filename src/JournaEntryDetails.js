@@ -47,7 +47,9 @@ const JournaEntryDetails = props => {
             setRating(journalEntry.rating)
             setNotes(journalEntry.notes)
         }
-    }, [bookId])
+
+        document.title = bookTitle
+    }, [bookId, bookTitle])
 
     return (
         <div>
