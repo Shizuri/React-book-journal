@@ -1,6 +1,7 @@
 // This component displays the users journal entry for the book that he is reading.
-import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from 'react'
+import { Link, useLocation, useHistory } from 'react-router-dom'
+import { JournalContext } from './journalContext'
 
 const JournaEntryDetails = props => {
     // Get the book information passed from JournalEntry as a Link state prop from react-router
@@ -19,11 +20,16 @@ const JournaEntryDetails = props => {
     const [review, setReview] = useState('')
     const [rating, setRating] = useState('')
     const [notes, setNotes] = useState('')
+    // Get the removeBookFromJournal function from journalContext
+    const { removeBookFromJournal } = useContext(JournalContext)
+    // Neaded to redirect back to /journal after the book has been removed
+    const history = useHistory()
 
+    // Provide a confirmation and page redirection after the book is removed from the Journal
     const handleRemoveBook = () => {
         if (window.confirm(`Are you sure that you want to remove ${bookTitle} from your Journal?`)) {
-            console.log('removing: ', bookTitle)
-            console.log('TO DO: add removeBook to journalContext. Make sure that it redirects to Journal and that the data is up to date')
+            removeBookFromJournal(bookId)
+            history.push('/journal')
         }
     }
 

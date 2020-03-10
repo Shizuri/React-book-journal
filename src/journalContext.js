@@ -23,6 +23,13 @@ const JournalContextProvider = props => {
         }
     }
 
+    const removeBookFromJournal = bookId => {
+        const updatedMyBooks = myBooks.filter(book => book.bookId !== bookId)
+        setMyBooks(updatedMyBooks)
+        localStorage.setItem('books', JSON.stringify(updatedMyBooks))
+        localStorage.removeItem(bookId)
+    }
+
     useEffect(() => {
         // Load the books from localStorage to state at the start of the application
         setMyBooks(JSON.parse(localStorage.getItem('books') || '[]'))
@@ -32,7 +39,8 @@ const JournalContextProvider = props => {
         <JournalContext.Provider value={{
             myBooks,
             setMyBooks,
-            addBookToJournal
+            addBookToJournal,
+            removeBookFromJournal
         }}>
             {props.children}
         </JournalContext.Provider>
