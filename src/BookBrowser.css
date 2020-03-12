@@ -1,0 +1,15 @@
+.Book-Browser {
+    background-color: gold;
+}
+
+.Book-Browser-intro {
+    background-color: gainsboro;
+}
+
+.Book-Browser-search {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 60px;
+    width: 100%;
+    background-color: gainsboro;
+}

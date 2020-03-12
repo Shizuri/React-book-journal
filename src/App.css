@@ -1,5 +1,17 @@
 .App {
   text-align: center;
+  margin-top: 60px;
+}
+
+.App-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: deepskyblue;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-nav-active {

@@ -44,11 +44,11 @@ const BookDetails = props => {
                 })
         }
 
-        // If we are missing the data, in case of a user refres, fetch the data again, but just for this book.
-        if (bookResults.length === 0) {
+        // If we are missing the data, fetch the data again, but just for this book.
+        if (!bookResults.some(book => book.id === bookId)) {
             getABook(bookId)
         } else {
-            // If the data is still here, get it from Context API
+            // If the data is still here from the performed search, get it from Context API
             const foundBook = bookResults.filter(book => book.id === bookId)[0].volumeInfo
             setBook(foundBook)
             document.title = foundBook.title

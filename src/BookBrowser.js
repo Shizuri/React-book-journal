@@ -1,4 +1,5 @@
 // This component provides the functionality to search and display books from the Google Books Api.
+import './BookBrowser.css'
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import axios from 'axios'
 import loadingFountain from './images/loadingFountain.gif'
@@ -112,20 +113,26 @@ const BookBrowser = props => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor='search-box'><i>Search for books by title, authors and ISBN</i></label>
-                <br />
-                <input
-                    type='text'
-                    name='search-bar'
-                    placeholder='Search for a book'
-                    value={searchTerm}
-                    onChange={event => setSearchTerm(event.target.value)}
-                    ref={inputRef}
-                />
-                <button>Search</button>
-            </form>
+        <div className='Book-Browser'>
+            <div className='Book-Browser-intro'>
+                <p>
+                    Search for books by title, authors and ISBN.<br />
+                    Than add books to your Journal to review and catalog.
+                </p>
+            </div>
+            <div className='Book-Browser-search'>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type='text'
+                        name='search-bar'
+                        placeholder='Search for a book'
+                        value={searchTerm}
+                        onChange={event => setSearchTerm(event.target.value)}
+                        ref={inputRef}
+                    />
+                    <button>Search</button>
+                </form>
+            </div>
             {booksOutput()}
             {bookButton()}
         </div >
