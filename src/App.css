@@ -1,21 +1,21 @@
 .App {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 50px;
 }
 
 .App-nav {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: deepskyblue;
-  height: 60px;
+  background-color: #9dd1fe;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .App-nav-active {
-  border: 2px solid purple;
-  background-color: papayawhip;
-  padding: 0px 2px
+  /* border: 2px solid purple; */
+  background-color: #fffde7;
+  /* padding: 0px 2px */
 }

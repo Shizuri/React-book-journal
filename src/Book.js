@@ -16,7 +16,7 @@ const Book = props => {
     const bookIsInJournal = myBooks.some(book => book.bookId === id) // Check if the book is already in the Journal
 
     return (
-        <div style={{ border: '1px solid black', width: '80%', margin: '0px auto 10px', backgroundColor: '#F8ECC2' }}>
+        <div style={{ border: '1px solid black', width: '80%', margin: '0px auto 10px', backgroundColor: '#FFC300' }}>
             <Link to={`${url}/${id}`}>{title} {subtitle ? ` - ${subtitle}` : ''}</Link> <b>
                 by</b> {authors ? authors.map(author => author) : <i>authors missing</i>}
             <Link to={`${url}/${id}`}><img src={img} alt={title} /></Link>

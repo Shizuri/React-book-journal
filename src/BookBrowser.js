@@ -115,10 +115,9 @@ const BookBrowser = props => {
     return (
         <div className='Book-Browser'>
             <div className='Book-Browser-intro'>
-                <p>
                     Search for books by title, authors and ISBN.<br />
                     Than add books to your Journal to review and catalog.
-                </p>
+                    {/* <br /> ??? Click here for additional information. ??? */}
             </div>
             <div className='Book-Browser-search'>
                 <form onSubmit={handleSubmit}>
