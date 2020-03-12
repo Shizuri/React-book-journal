@@ -77,7 +77,7 @@ const BookDetails = props => {
     return (
         <div>
             {bookIsInJournal ?
-                <span><b>This book is already in your Journal</b></span>
+                <span><b>This book is in your Journal</b></span>
                 : <button onClick={() => addBookToJournal(bookId, book.title, img)}>Add to Journal</button>}
             <p>Title: {book.title}</p>
             <p>Subtitle: {subtitle}</p>
@@ -92,7 +92,7 @@ const BookDetails = props => {
             <p>Мaturity rating: {maturityRating}</p>
             <img src={img} alt={book.title} />
             <p>Language: {language}</p>
-            <button onClick={history.goBack}>Back to Book Browser</button>
+            <button onClick={history.goBack}>Back</button>
         </div>
     )
 }

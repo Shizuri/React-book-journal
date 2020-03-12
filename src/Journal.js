@@ -13,7 +13,6 @@ const Journal = props => {
     return (
         <div>
             <h1>Journal Component</h1>
-            <button onClick={() => console.log(localStorage.getItem("books"))}>Show localStorage</button> {/* eventually delete this line */}
             {myBooks.map(book => <JournalEntry book={book} key={book.bookId}/>)}
         </div>
     )

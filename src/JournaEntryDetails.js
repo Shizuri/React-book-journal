@@ -15,7 +15,7 @@ const JournaEntryDetails = props => {
     } catch (error) {
         properlyLoaded = false
     }
-    
+
     // Needed to redirect back to /journal after the book has been removed
     const history = useHistory()
 
@@ -55,8 +55,12 @@ const JournaEntryDetails = props => {
         <div>
             {properlyLoaded ?
                 <>
-                    <p>My Journal entry about <b>{bookTitle}</b></p>
-                    <img src={bookThumbnail} alt={bookTitle} />
+                    <Link to={`/book-browser/${bookId}`}>
+                        <div style={{ border: '1px solid blue' }}>
+                            <p>My Journal entry about <b>{bookTitle}</b></p>
+                            <img src={bookThumbnail} alt={bookTitle} />
+                        </div>
+                    </Link>
                     <p>Started reading on: {startDate}</p>
                     <p>Finished reading on: {finishDate}</p>
                     <p>My rating: {rating}</p>
