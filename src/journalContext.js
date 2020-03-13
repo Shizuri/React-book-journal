@@ -7,6 +7,7 @@ const JournalContextProvider = props => {
     const [myBooks, setMyBooks] = useState([]) // List of all of the books in the Journal
 
     const addBookToJournal = (bookId, bookTitle, bookThumbnail) => {
+        // TODO: REFACTOR THIS TO TAKE AN OBJECT AND HOLD SUBTITLE AND AUTHORS TOO!!!
         const book = { bookId, bookTitle, bookThumbnail }
 
         // Check if the book is already in the Journal, if not add it to localStorage and update the state
