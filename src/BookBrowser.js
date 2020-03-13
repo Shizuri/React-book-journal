@@ -116,7 +116,7 @@ const BookBrowser = props => {
         <div className='Book-Browser'>
             <div className='Book-Browser-intro'>
                     Search for books by title, authors and ISBN<br />
-                    Than add books to your Journal to review and catalog
+                    Then add books to your Journal to review and catalog
                     {/* <br /> ??? Click here for additional information. ??? */}
             </div>
             <div className='Book-Browser-search-form'>

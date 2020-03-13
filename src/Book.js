@@ -17,12 +17,12 @@ const Book = props => {
 
     return (
         <div style={{ border: '1px solid black', width: '80%', margin: '0px auto 10px', backgroundColor: '#ffe7eb' }}>
-            <Link to={`${url}/${id}`}>{title} {subtitle ? <i>{` - ${subtitle}`}</i> : ''}</Link> <b>
-                by</b> {authors ? authors.map(author => author) : <i>authors missing</i>}
+            <Link to={`${url}/${id}`}>{title} {subtitle ? <i>{` - ${subtitle}`}</i> : ''}</Link> by <b>
+                {authors ? authors.map(author => author) : <i>authors missing</i>}</b>
             <Link to={`${url}/${id}`}><img src={img} alt={title} /></Link>
             {bookIsInJournal ?
                 <span>Book already in Journal</span>
-                : <button onClick={() => addBookToJournal(id, title, img)}>Add to Journal</button>}
+                : <button onClick={() => addBookToJournal({id, title, img, subtitle, authors})}>Add to Journal</button>}
         </div>
     )
 }

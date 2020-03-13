@@ -78,7 +78,7 @@ const BookDetails = props => {
         <div>
             {bookIsInJournal ?
                 <span><b>This book is in your Journal</b></span>
-                : <button onClick={() => addBookToJournal(bookId, book.title, img)}>Add to Journal</button>}
+                : <button onClick={() => addBookToJournal({id: bookId, title: book.title, img})}>Add to Journal</button>}
             <p>Title: {book.title}</p>
             <p>Subtitle: {subtitle}</p>
             <p>Authors: {authors}</p>
