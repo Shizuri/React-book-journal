@@ -12,10 +12,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.App-nav-link {
+  text-decoration: none;
+  color: #050709;
+  text-transform: none;
+  padding: 10px;
+  line-height: normal;
 }
 
 .App-nav-active {
-  /* border: 2px solid purple; */
-  background-color: #fffde7;
-  /* padding: 0px 2px */
+  background-color: #FFF3CD;
 }
+
+/* #9dd1fe */
+/* #fffde7 */
+/* #FFF3CD */

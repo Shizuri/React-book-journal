@@ -2,6 +2,7 @@
 import React, { useContext, useEffect } from 'react'
 import { JournalContext } from './journalContext'
 import JournalEntry from './JournalEntry'
+import './Journal.css'
 
 const Journal = props => {
     const { myBooks } = useContext(JournalContext) // myBooks contains bookId, bookTitle, bookThumbnail
@@ -12,7 +13,7 @@ const Journal = props => {
 
     return (
         <div>
-            <h1>Journal Component</h1>
+            <p className='Journal-intro'>Books in your Journal</p>
             {myBooks.map(book => <JournalEntry book={book} key={book.bookId}/>)}
         </div>
     )

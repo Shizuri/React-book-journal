@@ -1,10 +1,11 @@
 // This is a display component used in the Journal compomnent to display the books in the Journal.
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './JournalEntry.css'
 
 const JournalEntry = props => {
     return (
-        <div style={{ border: '1px solid teal', width: '80%', margin: '0px auto 10px', backgroundColor: 'pink' }}>
+        <div className='Journal-entry'>
             <Link to={`journal/${props.book.bookId}`}>
                 <div>
                     <span>{props.book.bookTitle}</span>

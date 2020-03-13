@@ -1,15 +1,23 @@
 .Book-Browser {
-    background-color: #fffde7;
+    background-color: #FFF3CD;
 }
 
 .Book-Browser-intro {
-    /* background-color: gainsboro; */
+    line-height: normal;
+    margin-top: 60px;
+    margin-bottom: 10px;
 }
 
-.Book-Browser-search {
+.Book-Browser-search-form {
     position: -webkit-sticky;
     position: sticky;
     top: 50px;
     width: 100%;
-    background-color: #fffde7;
+    background-color: #FFF3CD;
 }
+
+*:focus {
+    outline: none;
+}
+
+/* #fffde7 */

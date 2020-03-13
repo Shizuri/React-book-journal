@@ -5,5 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fffde7;
+  background-color: #FFF3CD;
+}
+
+html {
+  overflow-y: scroll;
 }

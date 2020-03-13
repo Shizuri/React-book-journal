@@ -11,8 +11,8 @@ const App = props => {
 	return (
 		<div className='App'>
 			<nav className='App-nav'>
-				<NavLink exact to='/book-browser' activeClassName='App-nav-active' style={{ marginRight: '20px' }}>Book Browser</NavLink>
-				<NavLink exact to='/journal' activeClassName='App-nav-active'>Book Journal</NavLink>
+				<NavLink exact to='/book-browser' activeClassName='App-nav-active' className='App-nav-link'>Book Browser</NavLink>
+				<NavLink exact to='/journal' activeClassName='App-nav-active' className='App-nav-link'>Book Journal</NavLink>
 			</nav>
 
 			<Switch>
