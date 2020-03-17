@@ -4,6 +4,8 @@ import React, { useContext } from 'react'
 import BookCoverNotAvailable from './images/BookCoverNotAvailable.png'
 import { Link, useRouteMatch } from 'react-router-dom'
 import { JournalContext } from './journalContext'
+import './Book.css'
+import useFormatAuthors from './hooks/useFormatAuthors'
 
 const Book = props => {
     const { title, subtitle, authors, imageLinks } = { ...props.book.volumeInfo } // Destructure the needed data from the props
@@ -15,14 +17,21 @@ const Book = props => {
     const img = imageLinks ? imageLinks.thumbnail : BookCoverNotAvailable // The Google Books API just ommits the imageLinks property if there are no images
     const bookIsInJournal = myBooks.some(book => book.bookId === id) // Check if the book is already in the Journal
 
+    const cleanedAuthor = useFormatAuthors(authors) // Format the author array for display
+
     return (
-        <div style={{ border: '1px solid black', width: '80%', margin: '0px auto 10px', backgroundColor: '#ffe7eb' }}>
-            <Link to={`${url}/${id}`}>{title} {subtitle ? <i>{` - ${subtitle}`}</i> : ''}</Link> by <b>
-                {authors ? authors.map(author => author) : <i>authors missing</i>}</b>
-            <Link to={`${url}/${id}`}><img src={img} alt={title} /></Link>
-            {bookIsInJournal ?
-                <span>Book already in Journal</span>
-                : <button onClick={() => addBookToJournal({id, title, img, subtitle, authors})}>Add to Journal</button>}
+        <div className='Book'>
+            <Link to={`${url}/${id}`} className='Book-link'>
+                <div className='Book-container'>
+                    <img src={img} alt={title} />
+                    <h2>{title}</h2>
+                    {subtitle && <span className='Book-subtitle'>{subtitle}</span>}
+                    {cleanedAuthor}
+                    {bookIsInJournal ?
+                        <span>Book already in Journal</span>
+                        : <button onClick={() => addBookToJournal({ id, title, img, subtitle, authors })}>Add to Journal</button>}
+                </div>
+            </Link>
         </div>
     )
 }

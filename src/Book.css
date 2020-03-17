@@ -1,0 +1,30 @@
+.Book {
+    width: 80%;
+    margin: 0px auto 10px;
+    background-color: #FFEACD;
+    border-radius: 15px;
+}
+
+.Book-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 0px;
+}
+
+.Book-container img {
+    align-self: center;
+}
+
+.Book-link {
+    text-decoration: none;
+    color: #555555;
+}
+
+.Book-author {
+    font-weight: bold;
+}
+
+.Book-subtitle {
+    font-style: italic;
+}
