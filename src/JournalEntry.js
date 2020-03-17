@@ -4,18 +4,31 @@ import { Link } from 'react-router-dom'
 import './JournalEntry.css'
 
 const JournalEntry = props => {
-    const authors = props.book.bookAuthors 
-    ? props.book.bookAuthors.map(author => <span key={author}>{author}</span>) 
-    : <span>unknow author</span>
-    
+    // Formating needed if authors are missing or if there is more than one.
+    const authors = () => {
+        if (!props.book.bookAuthors) {
+            return <span>by <span className='Journal-entry-author'>unknow author</span></span>
+        } else if (props.book.bookAuthors.length === 1) {
+            return <span>by <span className='Journal-entry-author'>{props.book.bookAuthors[0]}</span></span>
+        } else {
+            return (
+                <span>
+                    by {props.book.bookAuthors.map((author, i) => <span key={author}>
+                    <span className='Journal-entry-author'>{author}{i + 1 === props.book.bookAuthors.length ? ' ' : ','} </span>
+                </span>)}
+                </span>
+            )
+        }
+    }
+
     return (
         <div className='Journal-entry'>
-            <Link to={`journal/${props.book.bookId}`}>
-                <div>
-                    <span>{props.book.bookTitle}</span>
-                    {props.book.bookSubtitle && <span> - {props.book.bookSubtitle}</span>} by <b>
-                    {authors}</b>
+            <Link to={`journal/${props.book.bookId}`} className='Journal-entry-link'>
+                <div className='Journal-entry-container'>
                     <img src={props.book.bookThumbnail} alt={props.book.bookTitle} />
+                    <h2>{props.book.bookTitle}</h2>
+                    {props.book.bookSubtitle && <span className='Journal-entry-subtitle'>{props.book.bookSubtitle}</span>}
+                    {authors()}
                 </div>
             </Link>
         </div>

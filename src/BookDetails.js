@@ -17,12 +17,20 @@ const BookDetails = props => {
 
     const [book, setBook] = useState({}) // State for the book that we are currently looking at
 
+    // The Google Books API has some inconsistencies.
+    // When getting data from the search APi path the description is clean but if you get the data from the
+    // direct book API uri the data can containg HTML tags in it. This cleans it in a safe way.
+    const cleanHtml = html => {
+        const doc = new DOMParser().parseFromString(html , 'text/html');
+        return doc.body.textContent || "";
+    }
+
     // The Google Books API just omits the object property if there is no data! This is how we handle this problem
     const subtitle = book.subtitle ? book.subtitle : <i>Subtitle not available</i>
     const authors = book.authors ? book.authors.map(auth => auth) : <i>Authors not available</i>
     const publisher = book.publisher ? book.publisher : <i>Publisher not available</i>
     const dateOfPublishing = book.publishedDate ? book.publishedDate : <i>Date of publishing not available</i>
-    const description = book.description ? book.description : <i>Description not available</i>
+    const description = book.description ? cleanHtml(book.description) : <i>Description not available</i>
     const pageCount = book.pageCount ? book.pageCount : <i>Page count not available</i>
     const categories = book.categories ? book.categories.map(cat => cat) : <i>Categories not available</i>
     const userRatings = book.averageRating ? book.averageRating : <i>User rating not available</i>
@@ -30,6 +38,7 @@ const BookDetails = props => {
         'Appropriate only for mature readers' : 'Appropriate for all readers' : <i>User rating not available</i>
     const img = book.imageLinks ? book.imageLinks.thumbnail : BookCoverNotAvailable
     const language = book.language ? book.language : <i>Language rating not available</i>
+
 
     useEffect(() => {
         // Get a single book from the Google Books API
@@ -78,7 +87,7 @@ const BookDetails = props => {
         <div>
             {bookIsInJournal ?
                 <span><b>This book is in your Journal</b></span>
-                : <button onClick={() => addBookToJournal({id: bookId, title: book.title, img})}>Add to Journal</button>}
+                : <button onClick={() => addBookToJournal({ id: bookId, title: book.title, img })}>Add to Journal</button>}
             <p>Title: {book.title}</p>
             <p>Subtitle: {subtitle}</p>
             <p>Authors: {authors}</p>

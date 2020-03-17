@@ -4,3 +4,27 @@
     background-color: #FFEACD;
     border-radius: 15px;
 }
+
+.Journal-entry-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 0px;
+}
+
+.Journal-entry-container img {
+    align-self: center;
+}
+
+.Journal-entry-link {
+    text-decoration: none;
+    color: #555555;
+}
+
+.Journal-entry-author {
+    font-weight: bold;
+}
+
+.Journal-entry-subtitle {
+    font-style: italic;
+}

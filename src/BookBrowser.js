@@ -36,7 +36,7 @@ const BookBrowser = props => {
     // Getting books from Google Books API
     const getBooks = term => {
         const maxResults = 10
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=${maxResults}`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=${maxResults}&orderBy=relevance`)
             .then(function (response) {
                 // If there are no books, update the state to represent that and stop searching
                 if (response.data.totalItems === 0) {
@@ -67,15 +67,20 @@ const BookBrowser = props => {
         const maxResults = 10
         setIsLoadingMoreBooks(true)
 
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=${maxResults}&startIndex=${loadedBooksIndex}`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=${maxResults}&startIndex=${loadedBooksIndex}&orderBy=relevance`)
             .then(function (response) {
                 // If the API runs out of books it does not have 'response.data.items' in the object
                 if (response.data.items === undefined) {
                     setIsLoadingMoreBooks(false)
                 } else {
-                    setBookResults(prevBookResults => [...prevBookResults, ...response.data.items])
+                    // There is a bug in the Google Books API where they might send the same book more than one time.
+                    // The following code filters the duplicates without a noticable performance drop
+                    const resultsFromLoadMore = [...response.data.items]
+                    const filteredForDublicates = resultsFromLoadMore.filter(result => !bookResults.some(oldEntry => oldEntry.id === result.id))
+                    // Updating book results and the search results index
+                    setBookResults(prevBookResults => [...prevBookResults, ...filteredForDublicates])
                     setIsLoadingMoreBooks(false)
-                    setLoadedBooksIndex(prevIndex => prevIndex + response.data.items.length)
+                    setLoadedBooksIndex(prevIndex => prevIndex + filteredForDublicates.length)
                 }
             })
             .catch(function (error) {
@@ -104,10 +109,13 @@ const BookBrowser = props => {
     }
 
     // The 'Load More Books' button is replaced with a loading animation at loading times
-    const bookButton = () => {
+    const loadMoreBooksButton = () => {
         if (isLoadingMoreBooks) {
             return <img src={loadingFountain} alt='Loading...' />
         } else {
+            // The Load More Books button will stay in place even if there are no more results.
+            // This is because the Google Books API is a bit strange. After some time of sending no more results in the array of results
+            // it can update itself with new data. Because of this, the LMB button is not conditionally removed if there are no more results.
             return totalBooksFound > 0 ? <button onClick={loadMoreBooks}>Load More Books</button> : null
         }
     }
@@ -115,8 +123,8 @@ const BookBrowser = props => {
     return (
         <div className='Book-Browser'>
             <div className='Book-Browser-intro'>
-                    Search for books by title, authors and ISBN<br />
-                    Then add books to your Journal to review and catalog
+                Search for books by title, authors and ISBN,<br />
+                    then add books to your Journal to review and catalog
                     {/* <br /> ??? Click here for additional information. ??? */}
             </div>
             <div className='Book-Browser-search-form'>
@@ -133,7 +141,7 @@ const BookBrowser = props => {
                 </form>
             </div>
             {booksOutput()}
-            {bookButton()}
+            {loadMoreBooksButton()}
         </div >
     )
 }
