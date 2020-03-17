@@ -28,3 +28,7 @@
 .Book-subtitle {
     font-style: italic;
 }
+
+.Book-button {
+    align-self: center;
+}

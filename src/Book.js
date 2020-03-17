@@ -27,11 +27,11 @@ const Book = props => {
                     <h2>{title}</h2>
                     {subtitle && <span className='Book-subtitle'>{subtitle}</span>}
                     {cleanedAuthor}
-                    {bookIsInJournal ?
-                        <span>Book already in Journal</span>
-                        : <button onClick={() => addBookToJournal({ id, title, img, subtitle, authors })}>Add to Journal</button>}
                 </div>
             </Link>
+            {bookIsInJournal ?
+                <span>Book already in Journal</span>
+                : <button onClick={() => addBookToJournal({ id, title, img, subtitle, authors })} className='Book-button'>Add to Journal</button>}
         </div>
     )
 }

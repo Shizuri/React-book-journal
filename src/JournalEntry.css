@@ -7,14 +7,31 @@
 
 .Journal-entry-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     padding: 10px 0px;
 }
 
-.Journal-entry-container img {
+.Journal-entry-image {
     align-self: center;
 }
+
+@media (min-width: 800px) {
+    .Journal-entry-image {
+        margin-left: 10em;
+    }
+}
+
+.Journal-entry-description {
+    align-self: center;
+    margin: 0 auto;
+}
+
+/* @media (min-width: 800px) {
+    .Journal-entry-description {
+        margin-right: 10em;
+    }
+} */
 
 .Journal-entry-link {
     text-decoration: none;
