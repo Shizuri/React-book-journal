@@ -9,13 +9,19 @@ const Journal = props => {
 
     useEffect(() => {
         document.title = 'Journal'
-    },[])
+    }, [])
 
     return (
         <div>
-            <p className='Journal-intro'>Books in your Journal</p>
-            {myBooks.map(book => <JournalEntry book={book} key={book.bookId}/>)}
-        </div>
+            {
+                myBooks.length === 0 ?
+                    <p className='Journal-intro'>Add some books to your Journal from the Book Browser</p> :
+                    <>
+                        <p className='Journal-intro'>Books in your Journal</p>
+                        {myBooks.map(book => <JournalEntry book={book} key={book.bookId} />)}
+                    </>
+            }
+        </div >
     )
 }
 
