@@ -5,6 +5,12 @@
     border-radius: 15px;
 }
 
+@media (max-width: 1200px) {
+    .Journal-entry {
+        width: 90%;
+    }
+}
+
 .Journal-entry-container {
     display: flex;
     flex-direction: row;
@@ -14,6 +20,7 @@
 
 .Journal-entry-image {
     align-self: center;
+    padding-left: 1em;
 }
 
 @media (min-width: 800px) {
@@ -26,12 +33,6 @@
     align-self: center;
     margin: 0 auto;
 }
-
-/* @media (min-width: 800px) {
-    .Journal-entry-description {
-        margin-right: 10em;
-    }
-} */
 
 .Journal-entry-link {
     text-decoration: none;
