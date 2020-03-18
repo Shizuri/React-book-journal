@@ -13,11 +13,11 @@ const JournalEntry = props => {
             <Link to={`journal/${props.book.bookId}`} className='Journal-entry-link'>
                 <div className='Journal-entry-container'>
                     <img src={props.book.bookThumbnail} alt={props.book.bookTitle} className='Journal-entry-image'/>
-                    <span className='Journal-entry-description'>
+                    <div className='Journal-entry-description'>
                         <h2>{props.book.bookTitle}</h2>
-                        {props.book.bookSubtitle && <span className='Journal-entry-subtitle'>{props.book.bookSubtitle}</span>}
+                        {props.book.bookSubtitle && <div className='Journal-entry-subtitle'>{props.book.bookSubtitle}</div>}
                         {authors}
-                    </span>
+                    </div>
                 </div>
             </Link>
         </div>

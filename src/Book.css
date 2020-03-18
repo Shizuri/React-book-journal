@@ -1,19 +1,43 @@
 .Book {
-    width: 80%;
+    width: 60%;
     margin: 0px auto 10px;
     background-color: #FFEACD;
     border-radius: 15px;
 }
 
+@media (max-width: 1400px) {
+    .Book {
+        width: 70%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .Book {
+        width: 80%;
+    }
+}
+
+@media (max-width: 400px) {
+    .Book {
+        width: 95%;
+    }
+}
+
 .Book-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px 0px;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px 10px;
 }
 
 .Book-container img {
     align-self: center;
+    padding-right: 0.5em;
+}
+
+.Book-description {
+    align-self: center;
+    margin: 0 auto;
 }
 
 .Book-link {

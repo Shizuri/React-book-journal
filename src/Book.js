@@ -24,13 +24,15 @@ const Book = props => {
             <Link to={`${url}/${id}`} className='Book-link'>
                 <div className='Book-container'>
                     <img src={img} alt={title} />
-                    <h2>{title}</h2>
-                    {subtitle && <span className='Book-subtitle'>{subtitle}</span>}
-                    {cleanedAuthor}
+                    <div className='Book-description'>
+                        <h2>{title}</h2>
+                        {subtitle && <div className='Book-subtitle'>{subtitle}</div>}
+                        {cleanedAuthor}
+                    </div>
                 </div>
             </Link>
             {bookIsInJournal ?
-                <span>Book already in Journal</span>
+                <div>Book already in Journal</div>
                 : <button onClick={() => addBookToJournal({ id, title, img, subtitle, authors })} className='Book-button'>Add to Journal</button>}
         </div>
     )

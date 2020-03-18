@@ -18,7 +18,8 @@
 
 .App-nav-link {
   text-decoration: none;
-  color: #555555;
+  /* color: #555555; */
+  color: black;
   padding: 10px;
   line-height: normal;
 }
