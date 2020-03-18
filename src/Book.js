@@ -31,9 +31,11 @@ const Book = props => {
                     </div>
                 </div>
             </Link>
-            {bookIsInJournal ?
-                <div>Book already in Journal</div>
-                : <button onClick={() => addBookToJournal({ id, title, img, subtitle, authors })} className='Book-button'>Add to Journal</button>}
+            <div className='Book-button-container'>
+                {bookIsInJournal ?
+                    <div>Book is in Journal</div>
+                    : <button onClick={() => addBookToJournal({ id, title, img, subtitle, authors })} className='Book-button'>Add to Journal</button>}
+            </div>
         </div>
     )
 }

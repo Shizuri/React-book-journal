@@ -1,5 +1,6 @@
 // This component provides the functionality to search and display books from the Google Books Api.
 import './BookBrowser.css'
+import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-small.png'
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import axios from 'axios'
 import loadingFountain from './images/loadingFountain.gif'
@@ -127,18 +128,21 @@ const BookBrowser = props => {
                     then add books to your Journal to review and catalog
                     {/* <br /> ??? Click here for additional information. ??? */}
             </div>
-            <div className='Book-Browser-search-form'>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type='text'
-                        name='search-bar'
-                        placeholder='Search for a book'
-                        value={searchTerm}
-                        onChange={event => setSearchTerm(event.target.value)}
-                        ref={inputRef}
-                    />
-                    <button>Search</button>
-                </form>
+            <div className='Book-Browser-search-form-container'>
+                <div className='Book-Browser-search-form'>
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            type='text'
+                            name='search-bar'
+                            placeholder='Search for a book'
+                            value={searchTerm}
+                            onChange={event => setSearchTerm(event.target.value)}
+                            ref={inputRef}
+                            className='Book-Browser-search-bar'
+                        />
+                        <button className='Book-Browser-search-button'><img src={magnifyingGlass} alt='magnifyingGlass' className='Book-Browser-search-button-img'/></button>
+                    </form>
+                </div>
             </div>
             {booksOutput()}
             {loadMoreBooksButton()}

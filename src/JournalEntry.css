@@ -3,6 +3,16 @@
     margin: 0px auto 10px;
     background-color: #FFEACD;
     border-radius: 15px;
+    /* box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8); */
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    transition: background-color 1s;
+}
+
+.Journal-entry:hover {
+    border-radius: 15px;
+    background-color: #FFD496;
+    /* transform:scale(1.01,1.01); */
 }
 
 @media (max-width: 1400px) {
@@ -32,7 +42,8 @@
 
 .Journal-entry-image {
     align-self: center;
-    padding-right: 0.5em;
+    margin-right: 0.5em;
+    border-radius: 15px;
 }
 
 .Journal-entry-description {
@@ -43,6 +54,7 @@
 .Journal-entry-link {
     text-decoration: none;
     color: #555555;
+    align-self: center;
 }
 
 .Journal-entry-author {

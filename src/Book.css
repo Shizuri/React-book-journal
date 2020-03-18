@@ -1,8 +1,17 @@
 .Book {
     width: 60%;
     margin: 0px auto 10px;
-    background-color: #FFEACD;
     border-radius: 15px;
+    display: flex;
+    background-color: #FFEACD;
+    flex-direction: column;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    transition: background-color 1s;
+}
+
+.Book:hover {
+    border-radius: 15px;
+    background-color: #FFD496;
 }
 
 @media (max-width: 1400px) {
@@ -32,12 +41,15 @@
 
 .Book-container img {
     align-self: center;
-    padding-right: 0.5em;
+    margin-right: 0.5em;
+    border-radius: 15px;
 }
 
 .Book-description {
     align-self: center;
+    justify-self: center;
     margin: 0 auto;
+    /* flex: 0 0 auto; */
 }
 
 .Book-link {
@@ -55,4 +67,31 @@
 
 .Book-button {
     align-self: center;
+    width: 128px;
+    background-color: #9DD0FE;
+    line-height: 1;
+    text-align: center;
+    border: none;
+    padding: 10px 0px;
+    border-radius: 7px;
+    color: #555555;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.Book-button:focus {
+    outline: 0;
+}
+
+.Book-button:hover {
+    color: #FFF3CD;
+}
+
+.Book-button:active {
+    transform: translateY(2px);
+}
+
+.Book-button-container {
+    margin: 10px;
+    align-self: flex-start;
+    /* height: 35px; */
 }
