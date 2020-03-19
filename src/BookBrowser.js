@@ -1,9 +1,9 @@
 // This component provides the functionality to search and display books from the Google Books Api.
 import './BookBrowser.css'
-import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-small.png'
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import axios from 'axios'
 import loadingFountain from './images/loadingFountain.gif'
+import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-small.png'
 
 import Book from './Book'
 import { SearchContext } from './searchContext'
@@ -129,20 +129,18 @@ const BookBrowser = props => {
                     {/* <br /> ??? Click here for additional information. ??? */}
             </div>
             <div className='Book-Browser-search-form-container'>
-                <div className='Book-Browser-search-form'>
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            type='text'
-                            name='search-bar'
-                            placeholder='Search for a book'
-                            value={searchTerm}
-                            onChange={event => setSearchTerm(event.target.value)}
-                            ref={inputRef}
-                            className='Book-Browser-search-bar'
-                        />
-                        <button className='Book-Browser-search-button'><img src={magnifyingGlass} alt='magnifyingGlass' className='Book-Browser-search-button-img'/></button>
-                    </form>
-                </div>
+                <form onSubmit={handleSubmit} className='Book-Browser-search-form'>
+                    <input
+                        type='text'
+                        name='search-bar'
+                        placeholder='Search for a book'
+                        value={searchTerm}
+                        onChange={event => setSearchTerm(event.target.value)}
+                        ref={inputRef}
+                        className='Book-Browser-search-bar'
+                    />
+                    <button className='Book-Browser-search-button'><img src={magnifyingGlass} alt='magnifying glass'/></button>
+                </form>
             </div>
             {booksOutput()}
             {loadMoreBooksButton()}
@@ -152,4 +150,4 @@ const BookBrowser = props => {
 
 export default BookBrowser
 
-// This component holds all of the logic to find the queried books
+//<img src={magnifyingGlass} alt='magnifyingGlass' className='Book-Browser-search-button-img'/>

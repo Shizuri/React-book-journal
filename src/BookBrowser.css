@@ -25,6 +25,7 @@
     transition: color 0.3s, transform 0.3s;
     line-height: 1;
     height: 50px;
+    width: 50px;
     background-color: #FFEACD;
     border-radius: 0px 15px 15px 0px;
     transition: background-color 1s;
@@ -38,16 +39,12 @@
     height: 50px;
     border: none;
     background-color: #FFEACD;
-    width: 286px;
+    width: 300px;
     border-radius: 15px 0px 0px 15px;
     line-height: 1;
     color: #555555;
     transition: background-color 1s;
-    padding: 0;
-}
-
-.Book-Browser-search-button-img {
-    margin: 0 auto;
+    padding: 0px 0px 0px 25px;
 }
 
 .Book-Browser-search-bar::placeholder {
