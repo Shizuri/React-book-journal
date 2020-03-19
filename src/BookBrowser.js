@@ -98,7 +98,7 @@ const BookBrowser = props => {
     // Printing the books
     const booksOutput = () => {
         if (isSearching) {
-            // return <img src={loadingFountain} alt='Searching...' />
+            // Place a loading animation if the data is not fetched yet
             return <div className='loading-animation-container'><div className='lds-ellipsis'><div></div><div></div><div></div><div></div></div></div>
         } else {
             if (totalBooksFound === 0) {
@@ -113,18 +113,18 @@ const BookBrowser = props => {
     // The 'Load More Books' button is replaced with a loading animation at loading times
     const loadMoreBooksButton = () => {
         if (isLoadingMoreBooks) {
+            // Place a loading animation if the data is not fetched yet
             return <div className='loading-animation-container'><div className='lds-ellipsis'><div></div><div></div><div></div><div></div></div></div>
         } else {
             // The Load More Books button will stay in place even if there are no more results.
             // This is because the Google Books API is a bit strange. After some time of sending no more results in the array of results
             // it can update itself with new data. Because of this, the LMB button is not conditionally removed if there are no more results.
-            return totalBooksFound > 0 ? <button onClick={loadMoreBooks}>Load More Books</button> : null
+            return totalBooksFound > 0 ? <button onClick={loadMoreBooks} className='Book-Browser-load-more-books-button'>Load more Books</button> : null
         }
     }
 
     return (
         <div className='Book-Browser'>
-            <div className='loading-animation-container'><div className='lds-ellipsis'><div></div><div></div><div></div><div></div></div></div>
             <div className='Book-Browser-intro'>
                 Search for books by title, authors and ISBN,<br />
                     then add books to your Journal to review and catalog

@@ -14,6 +14,10 @@
     background-color: #FFD496;
 }
 
+.Book:hover {
+    background-color: #FFD496;
+}
+
 @media (max-width: 1400px) {
     .Book {
         width: 70%;
@@ -49,7 +53,6 @@
     align-self: center;
     justify-self: center;
     margin: 0 auto;
-    /* flex: 0 0 auto; */
 }
 
 .Book-link {
@@ -65,8 +68,9 @@
     font-style: italic;
 }
 
-.Book-button {
-    align-self: center;
+.Book-add-to-journal-button {
+    margin: 10px;
+    align-self: flex-start;
     width: 128px;
     background-color: #9DD0FE;
     line-height: 1;
@@ -78,20 +82,24 @@
     transition: color 0.3s, transform 0.3s;
 }
 
-.Book-button:focus {
+.Book-add-to-journal-button:focus {
     outline: 0;
 }
 
-.Book-button:hover {
+.Book-add-to-journal-button:hover {
     color: #FFF3CD;
 }
 
-.Book-button:active {
+.Book-add-to-journal-button:active {
     transform: translateY(2px);
 }
 
-.Book-button-container {
+.Book-is-in-Journal {
     margin: 10px;
     align-self: flex-start;
-    /* height: 35px; */
+    width: 128px;
+    line-height: 1;
+    text-align: center;
+    padding: 10px 0px;
+    color: #555555;
 }

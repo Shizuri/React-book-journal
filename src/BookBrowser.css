@@ -1,10 +1,14 @@
 .Book-Browser {
     background-color: #FFF3CD;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .Book-Browser-intro {
     line-height: normal;
-    margin-top: 70px;
+    margin-top: 20px;
     margin-bottom: 20px;
     font-style: italic;
 }
@@ -64,6 +68,36 @@
     justify-content: center;
 }
 
+.Book-Browser-load-more-books-button {
+    margin: 10px;
+    background-color: #D6D4FF;
+    line-height: 1;
+    text-align: center;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 7px;
+    color: #555555;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.Book-Browser-load-more-books-button:focus {
+    outline: 0;
+}
+
+.Book-Browser-load-more-books-button:hover {
+    color: #FFF3CD;
+}
+
+.Book-Browser-load-more-books-button:active {
+    transform: translateY(2px);
+}
+
 *:focus {
     outline: none;
+}
+
+@media (max-width: 490px) {
+    .Book-Browser-search-bar {
+        width: 65vw;
+    }
 }
