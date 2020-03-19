@@ -1,8 +1,8 @@
 // This component provides the functionality to search and display books from the Google Books Api.
 import './BookBrowser.css'
+import './loadingAnimation.css'
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import axios from 'axios'
-import loadingFountain from './images/loadingFountain.gif'
 import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-small.png'
 
 import Book from './Book'
@@ -98,7 +98,8 @@ const BookBrowser = props => {
     // Printing the books
     const booksOutput = () => {
         if (isSearching) {
-            return <img src={loadingFountain} alt='Searching...' />
+            // return <img src={loadingFountain} alt='Searching...' />
+            return <div className='loading-animation-container'><div className='lds-ellipsis'><div></div><div></div><div></div><div></div></div></div>
         } else {
             if (totalBooksFound === 0) {
                 return <p>No books found for the "{searchTerm}" query.</p>
@@ -112,7 +113,7 @@ const BookBrowser = props => {
     // The 'Load More Books' button is replaced with a loading animation at loading times
     const loadMoreBooksButton = () => {
         if (isLoadingMoreBooks) {
-            return <img src={loadingFountain} alt='Loading...' />
+            return <div className='loading-animation-container'><div className='lds-ellipsis'><div></div><div></div><div></div><div></div></div></div>
         } else {
             // The Load More Books button will stay in place even if there are no more results.
             // This is because the Google Books API is a bit strange. After some time of sending no more results in the array of results
@@ -123,6 +124,7 @@ const BookBrowser = props => {
 
     return (
         <div className='Book-Browser'>
+            <div className='loading-animation-container'><div className='lds-ellipsis'><div></div><div></div><div></div><div></div></div></div>
             <div className='Book-Browser-intro'>
                 Search for books by title, authors and ISBN,<br />
                     then add books to your Journal to review and catalog
@@ -139,7 +141,7 @@ const BookBrowser = props => {
                         ref={inputRef}
                         className='Book-Browser-search-bar'
                     />
-                    <button className='Book-Browser-search-button'><img src={magnifyingGlass} alt='magnifying glass'/></button>
+                    <button className='Book-Browser-search-button'><img src={magnifyingGlass} alt='magnifying glass' /></button>
                 </form>
             </div>
             {booksOutput()}
