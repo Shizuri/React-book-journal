@@ -1,4 +1,33 @@
 .BookDetails {
-    background-color: #FFD496;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 80%;
+}
+
+.BookDetails-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    background-color: #FFD496;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.BookDetails-left-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* width: 150px; */
+    margin-right: 15px;
+    height: 100%;
+    /* align-self: flex-start; */
+}
+
+.BookDetails-back-button {
+    margin-top: 25px;
 }

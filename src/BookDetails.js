@@ -22,7 +22,7 @@ const BookDetails = props => {
     // When getting data from the search APi path the description is clean but if you get the data from the
     // direct book API uri the data can containg HTML tags in it. This cleans it in a safe way.
     const cleanHtml = html => {
-        const doc = new DOMParser().parseFromString(html , 'text/html');
+        const doc = new DOMParser().parseFromString(html, 'text/html');
         return doc.body.textContent || "";
     }
 
@@ -86,23 +86,30 @@ const BookDetails = props => {
 
     return (
         <div className='BookDetails'>
-            {bookIsInJournal ?
-                <span><b>This book is in your Journal</b></span>
-                : <button onClick={() => addBookToJournal({ id: bookId, title: book.title, img })}>Add to Journal</button>}
-            <p>Title: {book.title}</p>
-            <p>Subtitle: {subtitle}</p>
-            <p>Authors: {authors}</p>
-            <p>Publisher: {publisher}</p>
-            <p>Date of publishing: {dateOfPublishing}</p>
-            <p>Description: {description}</p>
-            {industryIdentifiersPrintout()}
-            <p>Page count: {pageCount}</p>
-            <p>Categories: {categories}</p>
-            <p>User rating: {userRatings}</p>
-            <p>Мaturity rating: {maturityRating}</p>
-            <img src={img} alt={book.title} />
-            <p>Language: {language}</p>
-            <button onClick={history.goBack}>Back</button>
+            <h2>Book details about <i>{book.title}</i></h2>
+            <div className='BookDetails-container'>
+                <div className='BookDetails-left-panel'>
+                    <img src={img} alt={book.title} />
+                    {bookIsInJournal ?
+                        <div>Book is in Journal</div>
+                        : <button onClick={() => addBookToJournal({ id: bookId, title: book.title, img })}>Add to Journal</button>}
+                </div>
+                <div className='BookDetails-right-panel'>
+                    <p>Title: {book.title}</p>
+                    <p>Subtitle: {subtitle}</p>
+                    <p>Authors: {authors}</p>
+                    <p>Publisher: {publisher}</p>
+                    <p>Date of publishing: {dateOfPublishing}</p>
+                    <p>Description: {description}</p>
+                    {industryIdentifiersPrintout()}
+                    <p>Page count: {pageCount}</p>
+                    <p>Categories: {categories}</p>
+                    <p>User rating: {userRatings}</p>
+                    <p>Мaturity rating: {maturityRating}</p>
+                    <p>Language: {language}</p>
+                </div>
+            </div>
+            <button onClick={history.goBack} className='BookDetails-back-button'>Back</button>
         </div>
     )
 }

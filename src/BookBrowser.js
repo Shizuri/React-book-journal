@@ -112,14 +112,17 @@ const BookBrowser = props => {
 
     // The 'Load More Books' button is replaced with a loading animation at loading times
     const loadMoreBooksButton = () => {
-        if (isLoadingMoreBooks) {
-            // Place a loading animation if the data is not fetched yet
-            return <div className='loading-animation-container'><div className='lds-ellipsis'><div></div><div></div><div></div><div></div></div></div>
-        } else {
-            // The Load More Books button will stay in place even if there are no more results.
-            // This is because the Google Books API is a bit strange. After some time of sending no more results in the array of results
-            // it can update itself with new data. Because of this, the LMB button is not conditionally removed if there are no more results.
-            return totalBooksFound > 0 ? <button onClick={loadMoreBooks} className='Book-Browser-load-more-books-button'>Load more Books</button> : null
+        // Don't show the Load more Books button if a different seach is happening
+        if (!isSearching) {
+            if (isLoadingMoreBooks) {
+                // Place a loading animation if the data is not fetched yet
+                return <div className='loading-animation-container'><div className='lds-ellipsis'><div></div><div></div><div></div><div></div></div></div>
+            } else {
+                // The Load More Books button will stay in place even if there are no more results.
+                // This is because the Google Books API is a bit strange. After some time of sending no more results in the array of results
+                // it can update itself with new data. Because of this, the LMB button is not conditionally removed if there are no more results.
+                return totalBooksFound > 0 ? <button onClick={loadMoreBooks} className='Book-Browser-load-more-books-button'>Load more Books</button> : null
+            }
         }
     }
 

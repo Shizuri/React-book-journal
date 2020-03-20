@@ -34,6 +34,7 @@
     background-color: #FFEACD;
     border-radius: 0px 15px 15px 0px;
     transition: background-color 1s;
+    cursor: pointer;
 }
 
 .Book-Browser-search-button:focus {
@@ -79,6 +80,7 @@
     border-radius: 7px;
     color: #555555;
     transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
 }
 
 .Book-Browser-load-more-books-button:focus {
