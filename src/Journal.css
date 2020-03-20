@@ -1,5 +1,12 @@
+.Journal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .Journal-intro {
-    margin-top: 70px;
+    margin-top: 20px;
     margin-bottom: 20px;
     font-style: italic;
 }

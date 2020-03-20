@@ -12,7 +12,7 @@ const Journal = props => {
     }, [])
 
     return (
-        <div>
+        <div className='Journal'>
             {
                 myBooks.length === 0 ?
                     <p className='Journal-intro'>Add some books to your Journal from the Book Browser</p> :

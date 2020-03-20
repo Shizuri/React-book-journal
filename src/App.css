@@ -1,6 +1,9 @@
 .App {
-  text-align: center;
+  width: 100%;
   margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-nav {

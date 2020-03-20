@@ -6,6 +6,7 @@ import BookCoverNotAvailable from './images/BookCoverNotAvailable.png'
 import { useParams, useHistory } from 'react-router-dom'
 import { SearchContext } from './searchContext'
 import { JournalContext } from './journalContext'
+import './BookDetails.css'
 
 const BookDetails = props => {
     const { bookId } = useParams() // Get the book id that is sent as the book parametar in the URL
@@ -84,7 +85,7 @@ const BookDetails = props => {
     }
 
     return (
-        <div>
+        <div className='BookDetails'>
             {bookIsInJournal ?
                 <span><b>This book is in your Journal</b></span>
                 : <button onClick={() => addBookToJournal({ id: bookId, title: book.title, img })}>Add to Journal</button>}
