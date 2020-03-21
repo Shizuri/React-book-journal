@@ -22,12 +22,94 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* width: 150px; */
     margin-right: 15px;
     height: 100%;
-    /* align-self: flex-start; */
+}
+
+@media (max-width: 600px) {
+    .BookDetails-container {
+        flex-direction: column;
+    }
+    .BookDetails-left-panel {
+        margin-right: 0px;
+    }
+}
+
+.BookDetails-right-panel {
+    flex: 1;
 }
 
 .BookDetails-back-button {
     margin-top: 25px;
+}
+
+.BookDetails-back-button {
+    margin: 25px;
+    background-color: #D6D4FF;
+    line-height: 1;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 7px;
+    color: #555555;
+    transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.BookDetails-back-button:focus {
+    outline: 0;
+}
+
+.BookDetails-back-button:hover {
+    color: #FFF3CD;
+}
+
+.BookDetails-back-button:active {
+    transform: translateY(2px);
+}
+
+.BookDetails-img {
+    border-radius: 15px;
+}
+
+.BookDetails-add-to-journal-button {
+    margin: 10px;
+    align-self: flex-start;
+    width: 128px;
+    background-color: #9DD0FE;
+    line-height: 1;
+    text-align: center;
+    border: none;
+    padding: 10px 0px;
+    border-radius: 7px;
+    color: #555555;
+    transition: color 0.3s, transform 0.3s;
+    cursor: copy;
+    flex-shrink: 0;
+}
+
+.BookDetails-add-to-journal-button:focus {
+    outline: 0;
+}
+
+.BookDetails-add-to-journal-button:hover {
+    color: #FFF3CD;
+}
+
+.BookDetails-add-to-journal-button:active {
+    transform: translateY(2px);
+}
+
+.BookDetails-descriptor {
+    font-weight: bold;
+}
+
+.BookDetails-is-in-Journal {
+    margin: 10px;
+    align-self: flex-start;
+    width: 128px;
+    line-height: 1;
+    text-align: center;
+    padding: 10px 0px;
+    color: #555555;
+    flex-shrink: 0;
 }

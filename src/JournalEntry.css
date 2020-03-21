@@ -37,18 +37,21 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
+    justify-content: flex-start;
     padding: 10px 10px;
 }
 
 .Journal-entry-image {
-    align-self: center;
     margin-right: 0.5em;
     border-radius: 15px;
 }
 
 .Journal-entry-description {
-    align-self: center;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 auto;
 }
 
 .Journal-entry-link {
