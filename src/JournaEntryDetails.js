@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { JournalContext } from './journalContext'
+import './JournalEntryDetails.css'
 
 const JournaEntryDetails = props => {
     // If the page is loaded directly by its url, make sure that it's a valid journal entry
@@ -28,6 +29,7 @@ const JournaEntryDetails = props => {
     const [review, setReview] = useState('')
     const [rating, setRating] = useState('')
     const [notes, setNotes] = useState('')
+    const [hasEntry, setHasEntry] = useState(false)
 
     // Provide a confirmation and page redirection after the book is removed from the Journal
     const handleRemoveBook = () => {
@@ -46,29 +48,39 @@ const JournaEntryDetails = props => {
             setReview(journalEntry.review)
             setRating(journalEntry.rating)
             setNotes(journalEntry.notes)
+
+            setHasEntry(true)
         }
 
         document.title = bookTitle
     }, [bookId, bookTitle])
 
     return (
-        <div>
+        <div className='JournalEntryDetails-prime'>
             {properlyLoaded ?
-                <>
-                    <Link to={`/book-browser/${bookId}`}>
-                        <div style={{ border: '1px solid blue' }}>
-                            <p>My Journal entry about <b>{bookTitle}</b></p>
-                            <img src={bookThumbnail} alt={bookTitle} />
+                <div className='JournalEntryDetails'>
+                    <h3>Journal entry about <i>{bookTitle}</i></h3>
+                    <div className='JournalEntryDetails-container'>
+                        <Link to={`/book-browser/${bookId}`} className='JournalEntryDetails-left-panel'>
+                            <img src={bookThumbnail} alt={bookTitle} className='JournalEntryDetails-img' />
+                            <div className='JournalEntryDetails-link-notification'>
+                                Book Details
+                            </div>
+                        </Link>
+                        <div className='JournalEntryDetails-right-panel'>
+                            <p><span className='JournalEntryDetails-descriptor'>Started reading on:</span> {startDate}</p>
+                            <p><span className='JournalEntryDetails-descriptor'>Finished reading on:</span> {finishDate}</p>
+                            <p><span className='JournalEntryDetails-descriptor'>My rating:</span> {rating}</p>
+                            <p><span className='JournalEntryDetails-descriptor'>My review:</span> {review}</p>
+                            <p><span className='JournalEntryDetails-descriptor'>Additional notes:</span> {notes}</p>
                         </div>
-                    </Link>
-                    <p>Started reading on: {startDate}</p>
-                    <p>Finished reading on: {finishDate}</p>
-                    <p>My rating: {rating}</p>
-                    <p>My review: {review}</p>
-                    <p>Additional notes: {notes}</p>
-                    <Link to={`edit/${bookId}`}> Add / Edit Journal Entry</Link>
-                    <button onClick={handleRemoveBook}>Remove Book and Entry from Journal</button>
-                </>
+                    </div>
+                    <div className='JournalEntryDetails-buttons-panel'>
+                        <Link to={`edit/${bookId}`} className='JournalEntryDetails-add-edit-button'>{`${hasEntry ? 'Edit' : 'Add'} Journal Entry`}</Link>
+                        <button onClick={handleRemoveBook} className='JournalEntryDetails-remove-book-button'>Remove from Journal</button>
+                    </div>
+                    <button onClick={history.goBack} className='JournalEntryDetails-back-button'>Back</button>
+                </div>
                 : <h2>This journal entry does not exist.</h2>
             }
         </div>

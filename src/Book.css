@@ -14,10 +14,6 @@
     background-color: #FFD496;
 }
 
-.Book:hover {
-    background-color: #FFD496;
-}
-
 @media (max-width: 1400px) {
     .Book {
         width: 70%;

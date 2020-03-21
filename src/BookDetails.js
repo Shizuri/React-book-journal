@@ -92,7 +92,13 @@ const BookDetails = props => {
                     <img src={img} alt={book.title} className='BookDetails-img'/>
                     {bookIsInJournal ?
                         <div className='BookDetails-is-in-Journal'>Book is in Journal</div>
-                        : <button onClick={() => addBookToJournal({ id: bookId, title: book.title, img })} className='BookDetails-add-to-journal-button'>Add to Journal</button>}
+                        : <button onClick={() => addBookToJournal({ 
+                            id: bookId, 
+                            title: book.title, 
+                            img, 
+                            subtitle : book.subtitle,
+                            authors: book.authors
+                            })} className='BookDetails-add-to-journal-button'>Add to Journal</button>}
                 </div>
                 <div className='BookDetails-right-panel'>
                     <p><span className='BookDetails-descriptor'>Title:</span> {book.title}</p>

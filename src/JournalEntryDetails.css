@@ -1,0 +1,166 @@
+.JournalEntryDetails-prime {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.JournalEntryDetails {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+.JournalEntryDetails-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    background-color: #FFD496;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+@media (max-width: 550px) {
+    .JournalEntryDetails-container {
+        flex-direction: column;
+    }
+}
+
+.JournalEntryDetails-left-panel {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    margin-right: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 3s ease;
+    text-decoration: none;
+    color: #555555;
+}
+
+.JournalEntryDetails-img {
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+.JournalEntryDetails-link-notification {
+    transition: all 0.5s;
+    font-style: italic;
+    opacity: 0;
+    padding-top: 10px;
+}
+
+.JournalEntryDetails-left-panel:hover .JournalEntryDetails-link-notification{
+    opacity: 1;
+}
+
+.JournalEntryDetails-right-panel {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    word-break: break-all;
+}
+
+.JournalEntryDetails-descriptor {
+    font-weight: bold;
+}
+
+.JournalEntryDetails-buttons-panel {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1000px) {
+    .JournalEntryDetails-buttons-panel {
+        width: 100%;
+    }
+}
+
+.JournalEntryDetails-add-edit-button {
+    display: inline-block;
+    background-color: #9DD0FE;
+    line-height: 1;
+    padding: 10px 10px;
+    border-radius: 7px;
+    color: #555555;
+    transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
+    /* flex: 0 0 auto; */
+    text-decoration: none;
+    width: 180px;
+    margin-right: 25px;
+}
+
+.JournalEntryDetails-add-edit-button:focus {
+    outline: 0;
+}
+
+.JournalEntryDetails-add-edit-button:hover {
+    color: #FFF3CD;
+}
+
+.JournalEntryDetails-add-edit-button:active {
+    transform: translateY(2px);
+}
+
+.JournalEntryDetails-remove-book-button {
+    background-color: #9DD0FE;
+    line-height: 1;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 7px;
+    color: #555555;
+    transition: color 0.3s, transform 0.3s, background-color 2s;
+    cursor: pointer;
+    /* flex: 0 0 auto; */
+    text-decoration: none;
+    width: 200px;
+    margin-left: 25px;
+}
+
+.JournalEntryDetails-remove-book-button:focus {
+    outline: 0;
+}
+
+.JournalEntryDetails-remove-book-button:hover {
+    color: #FFF3CD;
+    background-color: #5F59F6;
+}
+
+.JournalEntryDetails-remove-book-button:active {
+    transform: translateY(2px);
+}
+
+.JournalEntryDetails-back-button {
+    margin-top: 50px;
+    background-color: #D6D4FF;
+    line-height: 1;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 7px;
+    color: #555555;
+    transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.JournalEntryDetails-back-button:focus {
+    outline: 0;
+}
+
+.JournalEntryDetails-back-button:hover {
+    color: #FFF3CD;
+}
+
+.JournalEntryDetails-back-button:active {
+    transform: translateY(2px);
+}
