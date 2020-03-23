@@ -79,7 +79,7 @@ const JournaEntryDetails = props => {
                         <Link to={`edit/${bookId}`} className='JournalEntryDetails-add-edit-button'>{`${hasEntry ? 'Edit' : 'Add'} Journal Entry`}</Link>
                         <button onClick={handleRemoveBook} className='JournalEntryDetails-remove-book-button'>Remove from Journal</button>
                     </div>
-                    <button onClick={history.goBack} className='JournalEntryDetails-back-button'>Back</button>
+                    <button onClick={() => history.push('/journal')} className='JournalEntryDetails-back-button'>Back</button>
                 </div>
                 : <h2>This journal entry does not exist.</h2>
             }
