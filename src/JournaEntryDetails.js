@@ -71,8 +71,8 @@ const JournaEntryDetails = props => {
                             <p><span className='JournalEntryDetails-descriptor'>Started reading on:</span> {startDate}</p>
                             <p><span className='JournalEntryDetails-descriptor'>Finished reading on:</span> {finishDate}</p>
                             <p><span className='JournalEntryDetails-descriptor'>My rating:</span> {rating}</p>
-                            <p><span className='JournalEntryDetails-descriptor'>My review:</span> {review}</p>
-                            <p><span className='JournalEntryDetails-descriptor'>Additional notes:</span> {notes}</p>
+                            <p className='JournalEntryDetails-textarea'><span className='JournalEntryDetails-descriptor'>My review:</span> {review}</p>
+                            <p className='JournalEntryDetails-textarea'><span className='JournalEntryDetails-descriptor'>Additional notes:</span> {notes}</p>
                         </div>
                     </div>
                     <div className='JournalEntryDetails-buttons-panel'>

@@ -164,3 +164,8 @@
 .JournalEntryDetails-back-button:active {
     transform: translateY(2px);
 }
+
+.JournalEntryDetails-textarea {
+    white-space: pre-line;
+    white-space: pre-wrap;
+}
