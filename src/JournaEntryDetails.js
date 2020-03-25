@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { JournalContext } from './journalContext'
 import './JournalEntryDetails.css'
+import Ratings from 'react-ratings-declarative'
 
 const JournaEntryDetails = props => {
     // If the page is loaded directly by its url, make sure that it's a valid journal entry
@@ -27,7 +28,7 @@ const JournaEntryDetails = props => {
     const [startDate, setStartDate] = useState('')
     const [finishDate, setFinishDate] = useState('')
     const [review, setReview] = useState('')
-    const [rating, setRating] = useState('')
+    const [rating, setRating] = useState(0)
     const [notes, setNotes] = useState('')
     const [hasEntry, setHasEntry] = useState(false)
 
@@ -48,7 +49,7 @@ const JournaEntryDetails = props => {
             setReview(journalEntry.review)
             setRating(journalEntry.rating)
             setNotes(journalEntry.notes)
-
+            // Hold state if the entry has had its first edit
             setHasEntry(true)
         }
 
@@ -68,11 +69,27 @@ const JournaEntryDetails = props => {
                             </div>
                         </Link>
                         <div className='JournalEntryDetails-right-panel'>
-                            <p><span className='JournalEntryDetails-descriptor'>Started reading on:</span> {startDate}</p>
-                            <p><span className='JournalEntryDetails-descriptor'>Finished reading on:</span> {finishDate}</p>
-                            <p><span className='JournalEntryDetails-descriptor'>My rating:</span> {rating}</p>
-                            <p className='JournalEntryDetails-textarea'><span className='JournalEntryDetails-descriptor'>My review:</span> {review}</p>
-                            <p className='JournalEntryDetails-textarea'><span className='JournalEntryDetails-descriptor'>Additional notes:</span> {notes}</p>
+                            <div className='JournalEntryDetails-date'><span className='JournalEntryDetails-descriptor'>Started reading on:</span> {startDate}</div>
+                            <div className='JournalEntryDetails-date'><span className='JournalEntryDetails-descriptor'>Finished reading on:</span> {finishDate}</div>
+                            <div className='JournalEntryDetails-rating'><span className='JournalEntryDetails-descriptor'>My rating:</span>
+                                <Ratings
+                                    rating={rating}
+                                    widgetRatedColors='#A8A5FE'
+                                    widgetEmptyColors='#FFF3CD'
+                                    widgetHoverColors='#A8A5FE'
+                                    widgetSpacings='5px'
+                                    widgetDimensions='45px'
+                                    // changeRating={setRating} this way the component is used only for display
+                                >
+                                    <Ratings.Widget />
+                                    <Ratings.Widget />
+                                    <Ratings.Widget />
+                                    <Ratings.Widget />
+                                    <Ratings.Widget />
+                                </Ratings>
+                            </div>
+                            <div className='JournalEntryDetails-review'><span className='JournalEntryDetails-descriptor'>My review:</span> {review}</div>
+                            <div className='JournalEntryDetails-notes'><span className='JournalEntryDetails-descriptor'>Additional notes:</span> {notes}</div>
                         </div>
                     </div>
                     <div className='JournalEntryDetails-buttons-panel'>
