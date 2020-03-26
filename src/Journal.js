@@ -25,10 +25,15 @@ const Journal = props => {
             }
             return (
                 myBooks.filter(
-                    // Filter by title
-                    book => book.bookTitle.toLowerCase().includes(value.toLowerCase())
-                    // Filter by author
-                        // || book.bookAuthors ? book.bookAuthors.some(author => author.toLowerCase().includes(value.toLowerCase())) : false
+                    book => {
+                        return (
+                            // Filter by title
+                            (book.bookTitle.toLowerCase().includes(value.toLowerCase()))
+                            ||
+                            // Filter by author
+                            (book.bookAuthors ? book.bookAuthors.some(author => author.toLowerCase().includes(value.toLowerCase())) : false)
+                        )
+                    }
                 )
 
             )
@@ -42,8 +47,6 @@ const Journal = props => {
     useEffect(() => {
         setFilteredBooks([...myBooks])
     }, [myBooks])
-
-
 
     return (
         <div className='Journal'>
