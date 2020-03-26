@@ -149,6 +149,8 @@ const BookBrowser = props => {
             </div>
             {booksOutput()}
             {loadMoreBooksButton()}
+            <button onClick={() => localStorage.clear()}>Snezhe klikni me!</button>
+
         </div >
     )
 }
