@@ -28,7 +28,7 @@ const EditJournalEntry = props => {
     const [startDate, setStartDate] = useState('')
     const [finishDate, setFinishDate] = useState('')
     const [review, setReview] = useState('')
-    const [rating, setRating] = useState(5)
+    const [rating, setRating] = useState(3)
     const [notes, setNotes] = useState('')
 
     const handleSaveChanges = event => {
@@ -125,9 +125,11 @@ const EditJournalEntry = props => {
                         </form>
                     </div>
 
-                    <button onClick={handleSaveChanges}>Save changes</button>
-                    <button onClick={() => history.push(`/journal/${bookId}`)}>Cancel changes</button>
-                    <button onClick={handleRemoveBook}>Remove Book and Entry from Journal</button>
+                    <div className='EditJournalEntry-buttons-panel'>
+                        <button onClick={handleSaveChanges} className='EditJournalEntry-save-button'>Save changes</button>
+                        <button onClick={handleRemoveBook} className='EditJournalEntry-remove-button'>Remove from Journal</button>
+                    </div>
+                    <button onClick={() => history.push(`/journal/${bookId}`)} className='EditJournalEntry-cancel-button'>Cancel changes</button>
                 </>
                 : <h2>This journal entry does not exist.</h2>}
         </div>

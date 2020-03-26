@@ -23,31 +23,10 @@ const JournalContextProvider = props => {
             setMyBooks(prevMyBooks => {
                 const updatedBooks = [...prevMyBooks, book]
                 localStorage.setItem('books', JSON.stringify(updatedBooks))
-                console.log('book added confirmation, change this to some CSS notification')
                 return updatedBooks
             })
         }
     }
-
-    // const addBookToJournal = (bookId, bookTitle, bookThumbnail) => {
-    //     // TODO: REFACTOR THIS TO TAKE AN OBJECT AND HOLD SUBTITLE AND AUTHORS TOO!!!
-    //     console.log()
-
-    //     const book = { bookId, bookTitle, bookThumbnail }
-
-    //     // Check if the book is already in the Journal, if not add it to localStorage and update the state
-    //     if(myBooks.some(b => b.bookId === bookId)){
-    //         // Redundancy to check if book is already in the Journal
-    //         alert('This book is already in your Journal')
-    //     } else {
-    //         setMyBooks(prevMyBooks => {
-    //             const updatedBooks = [...prevMyBooks, book]
-    //             localStorage.setItem('books', JSON.stringify(updatedBooks))
-    //             console.log('book added confirmation, change this to some CSS notification')
-    //             return updatedBooks
-    //         })
-    //     }
-    // }
 
     const removeBookFromJournal = bookId => {
         const updatedMyBooks = myBooks.filter(book => book.bookId !== bookId)

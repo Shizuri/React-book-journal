@@ -68,29 +68,36 @@ const JournaEntryDetails = props => {
                                 Book Details
                             </div>
                         </Link>
-                        <div className='JournalEntryDetails-right-panel'>
-                            <div className='JournalEntryDetails-date'><span className='JournalEntryDetails-descriptor'>Started reading on:</span> {startDate}</div>
-                            <div className='JournalEntryDetails-date'><span className='JournalEntryDetails-descriptor'>Finished reading on:</span> {finishDate}</div>
-                            <div className='JournalEntryDetails-rating'><span className='JournalEntryDetails-descriptor'>My rating:</span>
-                                <Ratings
-                                    rating={rating}
-                                    widgetRatedColors='#A8A5FE'
-                                    widgetEmptyColors='#FFF3CD'
-                                    widgetHoverColors='#A8A5FE'
-                                    widgetSpacings='5px'
-                                    widgetDimensions='45px'
-                                    // changeRating={setRating} this way the component is used only for display
-                                >
-                                    <Ratings.Widget />
-                                    <Ratings.Widget />
-                                    <Ratings.Widget />
-                                    <Ratings.Widget />
-                                    <Ratings.Widget />
-                                </Ratings>
+                        {hasEntry ?
+                            <div className='JournalEntryDetails-right-panel'>
+                                <div className='JournalEntryDetails-date'><span className='JournalEntryDetails-descriptor'>Started reading on:
+                                </span> {startDate ? startDate : <i>no entry</i>}</div>
+                                <div className='JournalEntryDetails-date'><span className='JournalEntryDetails-descriptor'>Finished reading on:
+                                </span> {finishDate ? finishDate : <i>no entry</i>}</div>
+                                <div className='JournalEntryDetails-rating'><span className='JournalEntryDetails-descriptor'>My rating:</span>
+                                    <Ratings
+                                        rating={rating}
+                                        widgetRatedColors='#A8A5FE'
+                                        widgetEmptyColors='#FFF3CD'
+                                        widgetHoverColors='#A8A5FE'
+                                        widgetSpacings='5px'
+                                        widgetDimensions='45px'
+                                    // changeRating={setRating} this way, by omitting changeRating from the props, the component is used only for display
+                                    >
+                                        <Ratings.Widget />
+                                        <Ratings.Widget />
+                                        <Ratings.Widget />
+                                        <Ratings.Widget />
+                                        <Ratings.Widget />
+                                    </Ratings>
+                                </div>
+                                <div className='JournalEntryDetails-review'><span className='JournalEntryDetails-descriptor'>My review:
+                                </span> {review ? review : <i>no entry</i>}</div>
+                                <div className='JournalEntryDetails-notes'><span className='JournalEntryDetails-descriptor'>Additional notes:
+                                </span> {notes ? notes : <i>no entry</i>}</div>
                             </div>
-                            <div className='JournalEntryDetails-review'><span className='JournalEntryDetails-descriptor'>My review:</span> {review}</div>
-                            <div className='JournalEntryDetails-notes'><span className='JournalEntryDetails-descriptor'>Additional notes:</span> {notes}</div>
-                        </div>
+                            : <p className='JournalEntryDetails-right-panel'>Nothing written about <i>{bookTitle}.</i>
+                            You can do so by clicking the Add Journal Entry button</p>}
                     </div>
                     <div className='JournalEntryDetails-buttons-panel'>
                         <Link to={`edit/${bookId}`} className='JournalEntryDetails-add-edit-button'>{`${hasEntry ? 'Edit' : 'Add'} Journal Entry`}</Link>

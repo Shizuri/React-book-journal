@@ -85,7 +85,6 @@
     color: #555555;
     transition: color 0.3s, transform 0.3s;
     cursor: pointer;
-    /* flex: 0 0 auto; */
     text-decoration: none;
     width: 180px;
     margin-right: 25px;
@@ -123,7 +122,7 @@
 
 .JournalEntryDetails-remove-book-button:hover {
     color: #FFF3CD;
-    background-color: #5F59F6;
+    /* background-color: #5F59F6; */
 }
 
 .JournalEntryDetails-remove-book-button:active {

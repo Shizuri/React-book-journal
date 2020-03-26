@@ -67,6 +67,89 @@
     margin-bottom: 5px;
 }
 
+.EditJournalEntry-buttons-panel {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.EditJournalEntry-save-button{
+    background-color: #9DD0FE;
+    line-height: 1;
+    padding: 10px 10px;
+    border-radius: 7px;
+    color: #555555;
+    transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
+    border: none;
+    width: 180px;
+    margin-right: 25px;
+}
+
+.EditJournalEntry-save-button:focus {
+    outline: 0;
+}
+
+.EditJournalEntry-save-button:hover {
+    color: #FFF3CD;
+}
+
+.EditJournalEntry-save-button:active {
+    transform: translateY(2px);
+}
+
+.EditJournalEntry-remove-button {
+    background-color: #9DD0FE;
+    line-height: 1;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 7px;
+    color: #555555;
+    transition: color 0.3s, transform 0.3s, background-color 2s;
+    cursor: pointer;
+    width: 180px;
+    margin-left: 25px;
+}
+
+.EditJournalEntry-remove-button:focus {
+    outline: 0;
+}
+
+.EditJournalEntry-remove-button:hover {
+    color: #FFF3CD;
+}
+
+.EditJournalEntry-remove-button:active {
+    transform: translateY(2px);
+}
+
+.EditJournalEntry-cancel-button {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    background-color: #D6D4FF;
+    line-height: 1;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 7px;
+    color: #555555;
+    transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.EditJournalEntry-cancel-button:focus {
+    outline: 0;
+}
+
+.EditJournalEntry-cancel-button:hover {
+    color: #FFF3CD;
+}
+
+.EditJournalEntry-cancel-button:active {
+    transform: translateY(2px);
+}
+
 @media (max-width: 600px) {
     .EditJournalEntry-container {
         flex-direction: column;
