@@ -18,11 +18,6 @@ const Journal = props => {
     const handleChange = value => {
         setSearchTerm(value)
         setFilteredBooks(prevFilteredBooks => {
-            // List all books if there is no search term.
-            // Necessary to prevent crash by book.bookAuthors.some()
-            if (value === '') {
-                return myBooks
-            }
             return (
                 myBooks.filter(
                     book => {

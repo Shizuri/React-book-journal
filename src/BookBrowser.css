@@ -63,7 +63,7 @@
     position: sticky;
     top: 50px;
     background-color: #FFF3CD;
-    z-index: 100;
+    z-index: 1;
     height: 70px;
     display: flex;
     align-items: center;
@@ -99,8 +99,56 @@
     outline: none;
 }
 
+.Book-Browser-about-button {
+    margin-top: 20px;
+    padding: 15px;
+    cursor: pointer;
+    color: #999999;
+    background-color: #FFF3CD;
+    border-radius: 15px;
+    border: 1px solid #DDDDDD;
+    opacity: 50%;
+    transition: 1s all;
+}
+
+.Book-Browser-about-button:hover {
+    opacity: 100%;
+}
+
+.Book-Browser-overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.Book-Browser-overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 2rem;
+    color: #FFF3CD;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
 @media (max-width: 490px) {
     .Book-Browser-search-bar {
         width: 65vw;
+    }
+    .Book-Browser-overlay-text {
+        padding: 20px;
+        top: 15%;
+        left: 0%;
+        font-size: 1.3rem;
+        transform: translate(0%, 0%);
+        -ms-transform: translate(-50%,-50%);
     }
 }

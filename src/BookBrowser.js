@@ -1,7 +1,7 @@
 // This component provides the functionality to search and display books from the Google Books Api.
 import './BookBrowser.css'
 import './loadingAnimation.css'
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-small.png'
 
@@ -23,7 +23,8 @@ const BookBrowser = props => {
 
     const [isSearching, setIsSearching] = useState(false) // Is the app waiting for data from Google Books, needed for loading animations
     const [isLoadingMoreBooks, setIsLoadingMoreBooks] = useState(false) // Is the app waiting to load more books from the Google Books API
-    const inputRef = useRef(null) // Reference so that the search bar is focused on load.
+
+    const [overlay, setOverlay] = useState('none') // State for the overlay
 
     // Needed to prevent page reaload, preventing queries from 0 length strins and setting the state of searching for books to ture
     const handleSubmit = event => {
@@ -91,7 +92,7 @@ const BookBrowser = props => {
 
     // Here to focus on the search bar only on the first load of the page
     useEffect(() => {
-        inputRef.current.focus()
+        // inputRef.current.focus()
         document.title = 'Book Browser'
     }, [])
 
@@ -126,12 +127,15 @@ const BookBrowser = props => {
         }
     }
 
+    const toggleOverlay = () => {
+        setOverlay(prevOverlay => prevOverlay === 'none' ? 'block' : 'none')
+    }
+
     return (
         <div className='Book-Browser'>
             <div className='Book-Browser-intro'>
                 Search for books by title, authors and ISBN,<br />
                     then add books to your Journal to review and catalog
-                    {/* <br /> ??? Click here for additional information. ??? */}
             </div>
             <div className='Book-Browser-search-form-container'>
                 <form onSubmit={handleSubmit} className='Book-Browser-search-form'>
@@ -141,7 +145,6 @@ const BookBrowser = props => {
                         placeholder='Search for a book'
                         value={searchTerm}
                         onChange={event => setSearchTerm(event.target.value)}
-                        ref={inputRef}
                         className='Book-Browser-search-bar'
                     />
                     <button className='Book-Browser-search-button'><img src={magnifyingGlass} alt='magnifying glass' /></button>
@@ -149,12 +152,18 @@ const BookBrowser = props => {
             </div>
             {booksOutput()}
             {loadMoreBooksButton()}
-            <button onClick={() => localStorage.clear()}>Snezhe klikni me!</button>
-
+            <div className='Book-Browser-overlay' onClick={toggleOverlay} style={{ display: overlay }}>
+                <div className='Book-Browser-overlay-text'>
+                    <p>The <b>Book Journal</b> application is a tool for cataloging your books.
+                Once you find your books, by using the <i>Google Books API</i>, you can store them in your Journal.
+                With it you can note the start and finish date, rate the book and review your experience.</p>
+                    <p>This React application was developed by using functional components, hooks and the Context API.</p>
+                    <p>Coding and design by <b>Zdravko Mavkov</b></p>
+                </div>
+            </div>
+            <div className='Book-Browser-about-button' onClick={toggleOverlay}>A B O U T</div>
         </div >
     )
 }
 
 export default BookBrowser
-
-//<img src={magnifyingGlass} alt='magnifyingGlass' className='Book-Browser-search-button-img'/>
