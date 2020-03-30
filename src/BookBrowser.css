@@ -107,12 +107,12 @@
     background-color: #FFF3CD;
     border-radius: 15px;
     border: 1px solid #DDDDDD;
-    opacity: 50%;
+    opacity: 0.5;
     transition: 1s all;
 }
 
 .Book-Browser-about-button:hover {
-    opacity: 100%;
+    opacity: 1;
 }
 
 .Book-Browser-overlay {
