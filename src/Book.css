@@ -5,31 +5,12 @@
     display: flex;
     flex-direction: column;
     background-color: #FFEACD;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     transition: background-color 1s;
 }
 
 .Book:hover {
     border-radius: 15px;
     background-color: #FFD496;
-}
-
-@media (max-width: 1400px) {
-    .Book {
-        width: 70%;
-    }
-}
-
-@media (max-width: 1200px) {
-    .Book {
-        width: 80%;
-    }
-}
-
-@media (max-width: 400px) {
-    .Book {
-        width: 95%;
-    }
 }
 
 .Book-container {
@@ -44,6 +25,9 @@
     align-self: center;
     margin-right: 0.5em;
     border-radius: 15px;
+    flex-grow: 0;
+    /* ↓ In case the image URL can't be reached, the image alt text will not streatch out */
+    max-width: 130px;
 }
 
 .Book-description {
@@ -116,4 +100,22 @@
 .Book-lower-link {
     width: 100%;
     border-radius: 0px 0px 15px 0px;
+}
+
+@media (max-width: 1400px) {
+    .Book {
+        width: 70%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .Book {
+        width: 80%;
+    }
+}
+
+@media (max-width: 400px) {
+    .Book {
+        width: 95%;
+    }
 }

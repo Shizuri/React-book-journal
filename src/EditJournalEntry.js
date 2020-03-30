@@ -6,9 +6,9 @@ import './EditJournalEntry.css'
 import Ratings from 'react-ratings-declarative'
 
 const EditJournalEntry = props => {
-    // If the page is loaded directly by its url, make sure that it's a valid journal entry
+    // If the page is loaded directly by its URL, make sure that it's a valid journal entry
     let properlyLoaded = true
-    // Get the book id that is sent as the book parametar in the URL
+    // Get the book id that is sent as the book parameter in the URL
     const { bookId } = useParams()
     let bookTitle, bookThumbnail
     const myBooks = JSON.parse(localStorage.getItem('books') || '[]')

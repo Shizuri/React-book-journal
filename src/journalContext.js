@@ -1,4 +1,4 @@
-// This component loads the Jurnal Entires from local storage and provides it to the needed components.
+// This component loads the Journal Entries from local storage and provides it to the needed components.
 // It also holds methods to manipulate books such as adding and removing books.
 import React, { useState, useEffect } from 'react'
 const JournalContext = React.createContext()

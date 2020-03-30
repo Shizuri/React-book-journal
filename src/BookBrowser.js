@@ -1,4 +1,4 @@
-// This component provides the functionality to search and display books from the Google Books Api.
+// This component provides the functionality to search and display books from the Google Books API.
 import './BookBrowser.css'
 import './loadingAnimation.css'
 import React, { useState, useEffect, useContext } from 'react'
@@ -9,7 +9,7 @@ import Book from './Book'
 import { SearchContext } from './searchContext'
 
 const BookBrowser = props => {
-    // This allows for the needed data to be availabe to all components even after they are unmounted by react-router
+    // This allows for the needed data to be available to all components even after they are unmounted by react-router
     const {
         searchTerm,
         setSearchTerm,
@@ -26,7 +26,7 @@ const BookBrowser = props => {
 
     const [overlay, setOverlay] = useState('none') // State for the overlay
 
-    // Needed to prevent page reaload, preventing queries from 0 length strins and setting the state of searching for books to ture
+    // Needed to prevent page reload, preventing queries with 0 length strings and setting the state of searching for books to true
     const handleSubmit = event => {
         event.preventDefault()
         if (searchTerm.length > 0) {
@@ -76,7 +76,7 @@ const BookBrowser = props => {
                     setIsLoadingMoreBooks(false)
                 } else {
                     // There is a bug in the Google Books API where they might send the same book more than one time.
-                    // The following code filters the duplicates without a noticable performance drop
+                    // The following code filters the duplicates without a noticeable performance drop
                     const resultsFromLoadMore = [...response.data.items]
                     const filteredForDublicates = resultsFromLoadMore.filter(result => !bookResults.some(oldEntry => oldEntry.id === result.id))
                     // Updating book results and the search results index
@@ -90,7 +90,7 @@ const BookBrowser = props => {
             })
     }
 
-    // Here to focus on the search bar only on the first load of the page
+        // Setting the document title
     useEffect(() => {
         // inputRef.current.focus()
         document.title = 'Book Browser'
@@ -113,7 +113,7 @@ const BookBrowser = props => {
 
     // The 'Load More Books' button is replaced with a loading animation at loading times
     const loadMoreBooksButton = () => {
-        // Don't show the Load more Books button if a different seach is happening
+        // Don't show the Load more Books button if a different search is happening
         if (!isSearching) {
             if (isLoadingMoreBooks) {
                 // Place a loading animation if the data is not fetched yet
@@ -127,6 +127,7 @@ const BookBrowser = props => {
         }
     }
 
+    // Used to show/hide the overlay of the ABOUT button
     const toggleOverlay = () => {
         setOverlay(prevOverlay => prevOverlay === 'none' ? 'block' : 'none')
     }

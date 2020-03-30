@@ -1,6 +1,6 @@
 import React from 'react'
 
-// Formating authors they are missing or if there is more than one.
+// Formatting authors they are missing or if there is more than one.
 // This is used as a hook because the same logic is needed in Book.js and JournalEntry.js
 const useFormatAuthors = authors => {
     if (!authors) {

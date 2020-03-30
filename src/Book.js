@@ -14,7 +14,7 @@ const Book = props => {
     const { url } = useRouteMatch(); // Get the current URL from react-router (can be hard coded, but this is a better coding practice)
     const { myBooks, addBookToJournal } = useContext(JournalContext) // Data and functions provided by the Journal Context
 
-    const img = imageLinks ? imageLinks.thumbnail : BookCoverNotAvailable // The Google Books API just ommits the imageLinks property if there are no images
+    const img = imageLinks ? imageLinks.thumbnail : BookCoverNotAvailable // The Google Books API just omits the imageLinks property if there are no images
     const bookIsInJournal = myBooks.some(book => book.bookId === id) // Check if the book is already in the Journal
 
     const cleanedAuthor = useFormatAuthors(authors) // Format the author array for display
@@ -42,5 +42,3 @@ const Book = props => {
 }
 
 export default Book
-
-// Display component to show all the information in the queried list of books

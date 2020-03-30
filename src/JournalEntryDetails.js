@@ -5,10 +5,10 @@ import { JournalContext } from './journalContext'
 import './JournalEntryDetails.css'
 import Ratings from 'react-ratings-declarative'
 
-const JournaEntryDetails = props => {
-    // If the page is loaded directly by its url, make sure that it's a valid journal entry
+const JournalEntryDetails = props => {
+    // If the page is loaded directly by its URL, make sure that it's a valid journal entry
     let properlyLoaded = true
-    // Get the book id that is sent as the book parametar in the URL
+    // Get the book id that is sent as the book parameter in the URL
     const { bookId } = useParams()
     let bookTitle, bookThumbnail
     const myBooks = JSON.parse(localStorage.getItem('books') || '[]')
@@ -111,4 +111,4 @@ const JournaEntryDetails = props => {
     )
 }
 
-export default JournaEntryDetails
+export default JournalEntryDetails

@@ -122,7 +122,6 @@
 
 .JournalEntryDetails-remove-book-button:hover {
     color: #FFF3CD;
-    /* background-color: #5F59F6; */
 }
 
 .JournalEntryDetails-remove-book-button:active {
@@ -165,7 +164,7 @@
     margin-bottom: 30px;
 }
 
-/* this can be used to affect the start in 'react-ratings-declarative' */
+/* this can be used to affect the stars in 'react-ratings-declarative' */
 /* .widget-ratings {
     white-space: nowrap;
 } */

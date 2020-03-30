@@ -1,11 +1,11 @@
-// This is a display component used in the Journal compomnent to display the books in the Journal.
+// This is a display component used in the Journal component to display the books in the Journal.
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './JournalEntry.css'
 import useFormatAuthors from './hooks/useFormatAuthors'
 
 const JournalEntry = props => {
-    // Formating needed if authors are missing or if there is more than one.
+    // Formatting needed if authors are missing or if there is more than one.
     const authors = useFormatAuthors(props.book.bookAuthors)
 
     return (

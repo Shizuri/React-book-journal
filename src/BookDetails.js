@@ -1,6 +1,6 @@
 // This component displays details about the book.
 // If the data is already fetched during the search it will be used right away.
-// If is not stored in state it will be feched again from the Google Books API.
+// If is not stored in state it will be fetched again from the Google Books API.
 import React, { useState, useContext, useEffect } from 'react'
 import BookCoverNotAvailable from './images/BookCoverNotAvailable.png'
 import { useParams, useHistory } from 'react-router-dom'
@@ -9,7 +9,7 @@ import { JournalContext } from './journalContext'
 import './BookDetails.css'
 
 const BookDetails = props => {
-    const { bookId } = useParams() // Get the book id that is sent as the book parametar in the URL
+    const { bookId } = useParams() // Get the book id that is sent as the book parameter in the URL
     const history = useHistory() // Browsing history provided by react-router
 
     const { bookResults } = useContext(SearchContext) // If the page details are already in the bookResults, there is no need to fetch them from the API again
@@ -20,7 +20,7 @@ const BookDetails = props => {
 
     // The Google Books API has some inconsistencies.
     // When getting data from the search APi path the description is clean but if you get the data from the
-    // direct book API uri the data can containg HTML tags in it. This cleans it in a safe way.
+    // direct book API URI the data can containing HTML tags in it. This cleans it in a safe way.
     const cleanHtml = html => {
         const doc = new DOMParser().parseFromString(html, 'text/html');
         return doc.body.textContent || "";

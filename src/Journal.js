@@ -6,15 +6,17 @@ import './Journal.css'
 import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-small.png'
 
 const Journal = props => {
-    const { myBooks } = useContext(JournalContext) // myBooks contains bookId, bookTitle, bookThumbnail
+    const { myBooks } = useContext(JournalContext) // myBooks contains bookId, bookTitle, bookThumbnail, bookAuthors and bookSubtitle
     const [searchTerm, setSearchTerm] = useState('')
-    const [filteredBooks, setFilteredBooks] = useState([])
+    const [filteredBooks, setFilteredBooks] = useState(myBooks)
 
+    // Could be left as just a cosmetic non-button, but this way the functionality is maintained
     const handleSubmit = event => {
         event.preventDefault()
         handleChange(searchTerm)
     }
 
+    // Filtering the Journal Entries by book title or authors 
     const handleChange = value => {
         setSearchTerm(value)
         setFilteredBooks(prevFilteredBooks => {
@@ -35,13 +37,10 @@ const Journal = props => {
         })
     }
 
+    // Setting the document title
     useEffect(() => {
         document.title = 'Journal'
     }, [])
-
-    useEffect(() => {
-        setFilteredBooks([...myBooks])
-    }, [myBooks])
 
     return (
         <div className='Journal'>
