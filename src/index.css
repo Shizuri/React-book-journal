@@ -12,3 +12,13 @@ body {
 html {
   overflow-y: scroll;
 }
+
+/* Prevent blue background popup on button and star click on mobile */
+input,
+div,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
