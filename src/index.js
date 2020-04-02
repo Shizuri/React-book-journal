@@ -1,5 +1,6 @@
 import 'react-app-polyfill/ie11'
 import 'react-app-polyfill/stable'
+// This provides support for Internet Explorer 11
 
 import React from 'react'
 import ReactDOM from 'react-dom'
