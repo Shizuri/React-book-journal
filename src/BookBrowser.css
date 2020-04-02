@@ -109,6 +109,7 @@
     border: 1px solid #DDDDDD;
     opacity: 0.5;
     transition: 1s all;
+    white-space: nowrap;
 }
 
 .Book-Browser-about-button:hover {
@@ -143,6 +144,9 @@
     .Book-Browser-search-bar {
         width: 65vw;
     }
+}
+
+@media (max-width: 650px) {
     .Book-Browser-overlay-text {
         padding: 20px;
         top: 15%;

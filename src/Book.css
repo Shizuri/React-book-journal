@@ -28,6 +28,7 @@
     flex-grow: 0;
     /* ↓ In case the image URL can't be reached, the image alt text will not streatch out */
     max-width: 130px;
+    min-width: 128px;
 }
 
 .Book-description {
