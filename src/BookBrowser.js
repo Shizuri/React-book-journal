@@ -159,7 +159,9 @@ const BookBrowser = props => {
                     All of the data is provided by the public <i>Google Books API</i>.
                 Once you find your books you can store them in your Journal.
                 There you can note the start and finish date, rate the book and review your experience.</p>
-                    <p>This React application was developed by using functional components, hooks and the Context API.</p>
+                    <p>This React application was developed by using functional components, hooks and the Context API.
+                        <br />All data is kept in localStorage.
+                    </p>
                     <p>Coding and design by<br /><b>Zdravko Mavkov</b></p>
                 </div>
             </div>
