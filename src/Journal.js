@@ -1,6 +1,7 @@
 // This component lists prints the books in the users journal.
 import React, { useContext, useEffect, useState } from 'react'
 import { JournalContext } from './journalContext'
+import { ScrollContext } from './scrollContext'
 import JournalEntry from './JournalEntry'
 import './Journal.css'
 import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-small.png'
@@ -8,7 +9,10 @@ import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-
 const Journal = props => {
     const { myBooks } = useContext(JournalContext) // myBooks contains bookId, bookTitle, bookThumbnail, bookAuthors and bookSubtitle
     const [searchTerm, setSearchTerm] = useState('')
-    const [filteredBooks, setFilteredBooks] = useState(myBooks)
+    const [filteredBooks, setFilteredBooks] = useState([])
+
+    // This provides and setts the scroll location for this component
+    const { journalScrollPosition, setJournalScrollPosition } = useContext(ScrollContext)
 
     // Could be left as just a cosmetic non-button, but this way the functionality is maintained
     const handleSubmit = event => {
@@ -41,6 +45,23 @@ const Journal = props => {
     useEffect(() => {
         document.title = 'Journal'
     }, [])
+
+    // When this component is loaded myBooks is an empty array. This is because in journalContext, myBooks is asynchronously updated.
+    // This is because it uses React Set State that is an asynchronous function. So once myBooks filled, filteredBooks will be set to it.
+    useEffect(() => {
+        setFilteredBooks(myBooks)
+    }, [myBooks, setFilteredBooks])
+
+    // Setting the scroll position
+    useEffect(() => {
+        // When the component is mounted, set the window position from state
+        window.scrollTo(0, journalScrollPosition)
+
+        return () => {
+            // When the component is unmounting, set the scroll position to state
+            setJournalScrollPosition(window.pageYOffset)
+        }
+    }, [journalScrollPosition, setJournalScrollPosition])
 
     return (
         <div className='Journal'>
