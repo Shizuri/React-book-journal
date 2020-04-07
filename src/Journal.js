@@ -1,5 +1,5 @@
 // This component lists prints the books in the users journal.
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { JournalContext } from './journalContext'
 import JournalEntry from './JournalEntry'
 import './Journal.css'
