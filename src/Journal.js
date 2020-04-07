@@ -42,6 +42,11 @@ const Journal = props => {
         document.title = 'Journal'
     }, [])
 
+    // Update filteredBooks once myBooks gets the async data pull from react state
+    useEffect(() => {
+        setFilteredBooks([...myBooks])
+    }, [myBooks])
+
     return (
         <div className='Journal'>
             {
