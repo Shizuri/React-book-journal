@@ -5,6 +5,7 @@ const JournalContext = React.createContext()
 
 const JournalContextProvider = props => {
     const [myBooks, setMyBooks] = useState([]) // List of all of the books in the Journal
+    const [searchTerm, setSearchTerm] = useState('') // The search term is located here so that it is not lost on route switching
 
     const addBookToJournal = (bookInput) => {
         const book = {
@@ -45,7 +46,9 @@ const JournalContextProvider = props => {
             myBooks,
             setMyBooks,
             addBookToJournal,
-            removeBookFromJournal
+            removeBookFromJournal,
+            searchTerm,
+            setSearchTerm
         }}>
             {props.children}
         </JournalContext.Provider>

@@ -6,19 +6,18 @@ import './Journal.css'
 import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-small.png'
 
 const Journal = props => {
-    const { myBooks } = useContext(JournalContext) // myBooks contains bookId, bookTitle, bookThumbnail, bookAuthors and bookSubtitle
-    const [searchTerm, setSearchTerm] = useState('')
+    // myBooks contains bookId, bookTitle, bookThumbnail, bookAuthors and bookSubtitle
+    const { myBooks, searchTerm, setSearchTerm } = useContext(JournalContext)
     const [filteredBooks, setFilteredBooks] = useState(myBooks)
 
-    // Could be left as just a cosmetic non-button, but this way the functionality is maintained
+    // Just a cosmetic non-button.
     const handleSubmit = event => {
         event.preventDefault()
-        handleChange(searchTerm)
     }
 
-    // Filtering the Journal Entries by book title or authors 
     const handleChange = value => {
         setSearchTerm(value)
+        // Filtering the Journal Entries by book title or authors 
         setFilteredBooks(prevFilteredBooks => {
             return (
                 myBooks.filter(
@@ -42,10 +41,26 @@ const Journal = props => {
         document.title = 'Journal'
     }, [])
 
-    // Update filteredBooks once myBooks gets the async data pull from react state
+    // Update filteredBooks once myBooks gets the async data pull from react state in journalCountext
+    // This is because myBooks starts as an empty array and then is set by state asynchronously
     useEffect(() => {
-        setFilteredBooks([...myBooks])
-    }, [myBooks])
+        // Filtering the Journal Entries by book title or authors 
+        setFilteredBooks(prevFilteredBooks => {
+            return (
+                myBooks.filter(
+                    book => {
+                        return (
+                            // Filter by title
+                            (book.bookTitle.toLowerCase().includes(searchTerm.toLowerCase()))
+                            ||
+                            // Filter by author
+                            (book.bookAuthors ? book.bookAuthors.some(author => author.toLowerCase().includes(searchTerm.toLowerCase())) : false)
+                        )
+                    }
+                )
+            )
+        })
+    }, [myBooks, searchTerm])
 
     return (
         <div className='Journal'>
