@@ -7,7 +7,6 @@ import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-
 
 import Book from './Book'
 import { SearchContext } from './searchContext'
-import { ScrollContext } from './scrollContext'
 
 const BookBrowser = props => {
     // This allows for the needed data to be available to all components even after they are unmounted by react-router
@@ -21,9 +20,6 @@ const BookBrowser = props => {
         loadedBooksIndex,
         setLoadedBooksIndex
     } = useContext(SearchContext)
-
-    // This provides and setts the scroll location for this component
-    const { bookBrowserScrollPosition, setBookBrowserScrollPosition } = useContext(ScrollContext)
 
     const [isSearching, setIsSearching] = useState(false) // Is the app waiting for data from Google Books, needed for loading animations
     const [isLoadingMoreBooks, setIsLoadingMoreBooks] = useState(false) // Is the app waiting to load more books from the Google Books API
@@ -98,17 +94,6 @@ const BookBrowser = props => {
     useEffect(() => {
         document.title = 'Book Browser'
     }, [])
-
-    // Setting the scroll position
-    useEffect(() => {
-        // When the component is mounted, set the window position from state
-        window.scrollTo(0, bookBrowserScrollPosition)
-
-        return () => {
-            // When the component is unmounting, set the scroll position to state
-            setBookBrowserScrollPosition(window.pageYOffset)
-        }
-    }, [bookBrowserScrollPosition, setBookBrowserScrollPosition])
 
     // Printing the books
     const booksOutput = () => {

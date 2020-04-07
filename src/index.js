@@ -10,17 +10,14 @@ import * as serviceWorker from './serviceWorker'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { SearchContextProvider } from './searchContext'
 import { JournalContextProvider } from './journalContext'
-import { ScrollContextProvider } from './scrollContext'
 import './normalize.css'
 
 ReactDOM.render(
     <JournalContextProvider>
         <SearchContextProvider>
-            <ScrollContextProvider>
                 <Router>
                     <App />
                 </Router>
-            </ScrollContextProvider>
         </SearchContextProvider>
     </JournalContextProvider>
     , document.getElementById('root'))

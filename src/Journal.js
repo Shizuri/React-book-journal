@@ -1,39 +1,46 @@
 // This component lists prints the books in the users journal.
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { JournalContext } from './journalContext'
-import { ScrollContext } from './scrollContext'
 import JournalEntry from './JournalEntry'
 import './Journal.css'
 import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-small.png'
 
 const Journal = props => {
-    // In this component most of the logic is kept in the journalContext.
-    // This way it is available in other components that need it.
-    const { myBooks, searchTerm, filterBooks, filteredBooks } = useContext(JournalContext)
+    const { myBooks } = useContext(JournalContext) // myBooks contains bookId, bookTitle, bookThumbnail, bookAuthors and bookSubtitle
+    const [searchTerm, setSearchTerm] = useState('')
+    const [filteredBooks, setFilteredBooks] = useState(myBooks)
 
-    // // This provides and setts the scroll location for this component
-    const { journalScrollPosition, setJournalScrollPosition } = useContext(ScrollContext)
-
-    // Just a cosmetic non-button
+    // Could be left as just a cosmetic non-button, but this way the functionality is maintained
     const handleSubmit = event => {
         event.preventDefault()
+        handleChange(searchTerm)
     }
 
+    // Filtering the Journal Entries by book title or authors 
+    const handleChange = value => {
+        setSearchTerm(value)
+        setFilteredBooks(prevFilteredBooks => {
+            return (
+                myBooks.filter(
+                    book => {
+                        return (
+                            // Filter by title
+                            (book.bookTitle.toLowerCase().includes(value.toLowerCase()))
+                            ||
+                            // Filter by author
+                            (book.bookAuthors ? book.bookAuthors.some(author => author.toLowerCase().includes(value.toLowerCase())) : false)
+                        )
+                    }
+                )
+
+            )
+        })
+    }
+
+    // Setting the document title
     useEffect(() => {
-        // Setting the document title
         document.title = 'Journal'
     }, [])
-
-    // Setting the scroll position
-    useEffect(() => {
-        // When the component is mounted, set the window position from state
-        window.scrollTo(0, journalScrollPosition)
-
-        return () => {
-            // When the component is unmounting, set the scroll position to state
-            setJournalScrollPosition(window.pageYOffset)
-        }
-    }, [journalScrollPosition, setJournalScrollPosition])
 
     return (
         <div className='Journal'>
@@ -49,7 +56,7 @@ const Journal = props => {
                                     name='search-bar'
                                     placeholder='Filter books'
                                     value={searchTerm}
-                                    onChange={event => filterBooks(event.target.value)}
+                                    onChange={event => handleChange(event.target.value)}
                                     className='Journal-search-bar'
                                 />
                                 <button className='Journal-search-button'><img src={magnifyingGlass} alt='magnifying glass' /></button>

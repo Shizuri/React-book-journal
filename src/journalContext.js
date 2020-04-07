@@ -5,8 +5,6 @@ const JournalContext = React.createContext()
 
 const JournalContextProvider = props => {
     const [myBooks, setMyBooks] = useState([]) // List of all of the books in the Journal
-    const [searchTerm, setSearchTerm] = useState('') // Search term for filtering the books in the Journal
-    const [filteredBooks, setFilteredBooks] = useState([]) // Store the books filteres by the Journal component
 
     const addBookToJournal = (bookInput) => {
         const book = {
@@ -37,31 +35,9 @@ const JournalContextProvider = props => {
         localStorage.removeItem(bookId)
     }
 
-    // Filtering the Journal Entries by book title or authors 
-    const filterBooks = value => {
-        setSearchTerm(value)
-        setFilteredBooks(prevFilteredBooks => {
-            return (
-                myBooks.filter(
-                    book => {
-                        return (
-                            // Filter by title
-                            (book.bookTitle.toLowerCase().includes(value.toLowerCase()))
-                            ||
-                            // Filter by author
-                            (book.bookAuthors ? book.bookAuthors.some(author => author.toLowerCase().includes(value.toLowerCase())) : false)
-                        )
-                    }
-                )
-
-            )
-        })
-    }
-
     useEffect(() => {
         // Load the books from localStorage to state at the start of the application
         setMyBooks(JSON.parse(localStorage.getItem('books') || '[]'))
-        setFilteredBooks(JSON.parse(localStorage.getItem('books') || '[]'))
     }, [])
 
     return (
@@ -69,10 +45,7 @@ const JournalContextProvider = props => {
             myBooks,
             setMyBooks,
             addBookToJournal,
-            removeBookFromJournal,
-            searchTerm,
-            filterBooks,
-            filteredBooks
+            removeBookFromJournal
         }}>
             {props.children}
         </JournalContext.Provider>
