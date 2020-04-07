@@ -7,8 +7,8 @@ import magnifyingGlass from './images/search-magnifying-glass-png-7-transparent-
 
 const Journal = props => {
     // myBooks contains bookId, bookTitle, bookThumbnail, bookAuthors and bookSubtitle
-    const { myBooks, searchTerm, setSearchTerm } = useContext(JournalContext)
-    const [filteredBooks, setFilteredBooks] = useState(myBooks)
+    // Keeping all of the state in journalContext provides a smooth experience when changing routes and no unneeded re-renders.
+    const { myBooks, searchTerm, setSearchTerm, filteredBooks, setFilteredBooks } = useContext(JournalContext)
 
     // Just a cosmetic non-button.
     const handleSubmit = event => {
@@ -40,27 +40,6 @@ const Journal = props => {
     useEffect(() => {
         document.title = 'Journal'
     }, [])
-
-    // Update filteredBooks once myBooks gets the async data pull from react state in journalCountext
-    // This is because myBooks starts as an empty array and then is set by state asynchronously
-    useEffect(() => {
-        // Filtering the Journal Entries by book title or authors 
-        setFilteredBooks(prevFilteredBooks => {
-            return (
-                myBooks.filter(
-                    book => {
-                        return (
-                            // Filter by title
-                            (book.bookTitle.toLowerCase().includes(searchTerm.toLowerCase()))
-                            ||
-                            // Filter by author
-                            (book.bookAuthors ? book.bookAuthors.some(author => author.toLowerCase().includes(searchTerm.toLowerCase())) : false)
-                        )
-                    }
-                )
-            )
-        })
-    }, [myBooks, searchTerm])
 
     return (
         <div className='Journal'>

@@ -6,6 +6,7 @@ const JournalContext = React.createContext()
 const JournalContextProvider = props => {
     const [myBooks, setMyBooks] = useState([]) // List of all of the books in the Journal
     const [searchTerm, setSearchTerm] = useState('') // The search term is located here so that it is not lost on route switching
+    const [filteredBooks, setFilteredBooks] = useState([]) // Store the filtered books
 
     const addBookToJournal = (bookInput) => {
         const book = {
@@ -39,6 +40,7 @@ const JournalContextProvider = props => {
     useEffect(() => {
         // Load the books from localStorage to state at the start of the application
         setMyBooks(JSON.parse(localStorage.getItem('books') || '[]'))
+        setFilteredBooks(JSON.parse(localStorage.getItem('books') || '[]'))
     }, [])
 
     return (
@@ -48,7 +50,9 @@ const JournalContextProvider = props => {
             addBookToJournal,
             removeBookFromJournal,
             searchTerm,
-            setSearchTerm
+            setSearchTerm,
+            filteredBooks,
+            setFilteredBooks
         }}>
             {props.children}
         </JournalContext.Provider>
