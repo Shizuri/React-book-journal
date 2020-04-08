@@ -23,7 +23,7 @@ const JournalContextProvider = props => {
             alert('This book is already in your Journal')
         } else {
             setMyBooks(prevMyBooks => {
-                const updatedBooks = [...prevMyBooks, book]
+                const updatedBooks = [book, ...prevMyBooks]
                 localStorage.setItem('books', JSON.stringify(updatedBooks))
                 return updatedBooks
             })
@@ -37,10 +37,31 @@ const JournalContextProvider = props => {
         localStorage.removeItem(bookId)
     }
 
+    // Dynamically update the journal if a book is added or removed.
     useEffect(() => {
-        // Load the books from localStorage to state at the start of the application
-        setMyBooks(JSON.parse(localStorage.getItem('books') || '[]'))
-        setFilteredBooks(JSON.parse(localStorage.getItem('books') || '[]'))
+        setFilteredBooks(prevFilteredBooks => {
+            return (
+                myBooks.filter(
+                    book => {
+                        return (
+                            // Filter by title
+                            (book.bookTitle.toLowerCase().includes(searchTerm.toLowerCase()))
+                            ||
+                            // Filter by author
+                            (book.bookAuthors ? book.bookAuthors.some(author => author.toLowerCase().includes(searchTerm.toLowerCase())) : false)
+                        )
+                    }
+                )
+
+            )
+        })
+    }, [myBooks, searchTerm])
+
+    // Load the books from localStorage to state at the start of the application.
+    useEffect(() => {
+        const booksInLocalStorage = JSON.parse(localStorage.getItem('books') || '[]')
+        setMyBooks(booksInLocalStorage)
+        setFilteredBooks(booksInLocalStorage)
     }, [])
 
     return (
