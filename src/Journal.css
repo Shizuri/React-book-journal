@@ -22,7 +22,7 @@
 }
 
 .Journal-search-form:hover .Journal-search-bar, .Journal-search-form:hover .Journal-search-button {
-    background-color: #FFD496;
+    background-color: #9DD0FE;
 }
 
 .Journal-search-button {
@@ -31,7 +31,7 @@
     line-height: 1;
     height: 50px;
     width: 50px;
-    background-color: #FFEACD;
+    background-color: #D1E9FF;
     border-radius: 0px 15px 15px 0px;
     transition: background-color 1s;
     cursor: pointer;
@@ -44,7 +44,7 @@
 .Journal-search-bar {
     height: 50px;
     border: none;
-    background-color: #FFEACD;
+    background-color: #D1E9FF;
     width: 300px;
     border-radius: 15px 0px 0px 15px;
     line-height: 1;

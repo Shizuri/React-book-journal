@@ -47,7 +47,10 @@ const Journal = props => {
                 myBooks.length === 0 ?
                     <p className='Journal-intro'>Add some books to your Journal from the Book Browser</p> :
                     <>
-                        <div className='Journal-intro'>Books in your Journal</div>
+                        <div className='Journal-intro'>
+                            Filter the books in your Journal<br />
+                            by title or author name
+                            </div>
                         <div className='Journal-search-form-container'>
                             <form onSubmit={handleSubmit} className='Journal-search-form'>
                                 <input
