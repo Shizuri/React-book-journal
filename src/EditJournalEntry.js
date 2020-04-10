@@ -90,9 +90,9 @@ const EditJournalEntry = props => {
                                 <span className='EditJournalEntry-descriptor'>My rating </span>
                                 <Ratings
                                     rating={rating}
-                                    widgetRatedColors='#A8A5FE'
+                                    widgetRatedColors='#9dd1fe'
                                     widgetEmptyColors='#FFF3CD'
-                                    widgetHoverColors='#A8A5FE'
+                                    widgetHoverColors='#9dd1fe'
                                     widgetSpacings='5px'
                                     widgetDimensions='45px'
                                     changeRating={setRating}
