@@ -1,4 +1,4 @@
-// This component displays the users journal entry for the book that he is reading.
+// This component displays the user's journal entry for the book that he is reading.
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { JournalContext } from './journalContext'
