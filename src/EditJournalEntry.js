@@ -11,7 +11,10 @@ const EditJournalEntry = props => {
     // Get the book id that is sent as the book parameter in the URL
     const { bookId } = useParams()
     let bookTitle, bookThumbnail
-    const myBooks = JSON.parse(localStorage.getItem('books') || '[]')
+
+    // Get the myBooks removeBookFromJournal function needed from journalContext
+    const { myBooks, removeBookFromJournal } = useContext(JournalContext)
+
     try {
         ({ bookTitle, bookThumbnail } = myBooks.filter(book => book.bookId === bookId)[0])
     } catch (error) {
@@ -20,9 +23,6 @@ const EditJournalEntry = props => {
 
     // Browsing history provided by react-router, needed to redirect after submit or cancel
     const history = useHistory()
-
-    // Get the removeBookFromJournal function needed from journalContext
-    const { removeBookFromJournal } = useContext(JournalContext)
 
     // State for the form
     const [startDate, setStartDate] = useState('')
