@@ -63,7 +63,7 @@
     position: sticky;
     top: 50px;
     background-color: #FFF3CD;
-    z-index: 100;
+    z-index: 1;
     height: 70px;
     display: flex;
     align-items: center;

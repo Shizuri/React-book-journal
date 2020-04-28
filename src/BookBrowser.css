@@ -126,7 +126,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6);
-    z-index: 2;
+    z-index: 3;
     cursor: pointer;
 }
 
@@ -146,6 +146,16 @@
     }
 }
 
+@media (max-width: 1200px) {
+    .Book-Browser-overlay-text {
+        top: 50%;
+        left: 20%;
+        font-size: 1.7rem;
+        transform: translate(-15%, -50%);
+        -ms-transform: translate(-15%, -50%);
+    }
+}
+
 @media (max-width: 650px) {
     .Book-Browser-overlay-text {
         padding: 20px;
@@ -153,6 +163,6 @@
         left: 0%;
         font-size: 1.3rem;
         transform: translate(0%, 0%);
-        -ms-transform: translate(-50%,-50%);
+        -ms-transform: translate(0%, 0%);
     }
 }

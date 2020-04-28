@@ -18,7 +18,7 @@
   justify-content: center;
   font-size: 1.6rem;
   font-weight: 600;
-  z-index: 101;
+  z-index: 2;
 }
 
 .App-nav-link {
