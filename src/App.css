@@ -30,4 +30,33 @@
 
 .App-nav-active {
   background-color: #FFF3CD;
+  border-radius: 15px 15px 0 0;
+  position: relative;
+}
+
+.App-nav-active:before,
+.App-nav-active:after {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 20px;
+  bottom: 0;
+}
+
+.App-nav-active:after {
+  right: -20px;
+  border-radius: 0 0 0 10px;
+  -moz-border-radius: 0 0 0 10px;
+  -webkit-border-radius: 0 0 0 10px;
+  -webkit-box-shadow: -10px 0 0 0 #FFF3CD;
+  box-shadow: -10px 0 0 0 #FFF3CD;
+}
+
+.App-nav-active:before {
+  left: -20px;
+  border-radius: 0 0 10px 0;
+  -moz-border-radius: 0 0 10px 0;
+  -webkit-border-radius: 0 0 10px 0;
+  -webkit-box-shadow: 10px 0 0 0 #FFF3CD;
+  box-shadow: 10px 0 0 0 #FFF3CD;
 }
